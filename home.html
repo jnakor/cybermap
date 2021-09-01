@@ -16,120 +16,110 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.min.c6820b4246dfb1fd50de50da104b15fa21b578b488678df9f6f9911de5b6bfac.css" />
     <link rel="stylesheet" href="assets/css/my.css" />
+    <link rel="stylesheet" href="assets/css/slider.css" />
+
+
 
 </head>
 <script>
-    var fixmenuDistance;
     window.onload = function() {
-        fixmenuDistance = document.getElementById('xxa').offsetTop + 20;
-    }
 
-    function menuScroll() {
-        var currentDistance = document.documentElement.scrollTop;
-        console.log(currentDistance, fixmenuDistance);
-        // alert(currentDistance + " " + fixmenuDistance);
-        if (currentDistance >= fixmenuDistance) {
-            document.getElementById("fixmenu").style.position = 'fixed';
-            document.getElementById("fixmenu").style.top = 0;
-        } else {
-            document.getElementById("fixmenu").style.position = 'relative';
+        // slider
+        var imgs_div = document.getElementById("imgs");
+        var nav_div = document.getElementById("nav");
+        //获取到图片轮播的ul对象数组
+        var imgsUl = imgs_div.getElementsByTagName("ul")[0];
+        //获取到远点的ul对象数组
+        var nav = nav_div.getElementsByTagName("ul")[0];
+        //上一个
+        var prious = document.getElementById("preous");
+        //下一个
+        var next = document.getElementById("next");
+        var timer;
+        var animTimer;
+        var index = 1;
+        play();
+        prious.onclick = function() {
+            initImgs(index);
+            index -= 1;
+            if (index < 1) {
+                index = 4;
+            }
+            animate(300);
+            btnShow(index);
         }
-    }
-
-    function chsScroll() {
-        var currentDistance = document.documentElement.scrollTop;
-        // alert(currentDistance + " " + fixmenuDistance);
-        var idList = ["Part-A", "Part-B", "Part-C", "Part-D"];
-        var index;
-        for (index = 0; index < idList.length; index++) {
-            curId = idList[index];
-            nexId = idList[index + 1];
-            chsId = curId + "-chs";
-            if (document.getElementById(chsId) == undefined) continue;
-
-            var startOffset = document.getElementById(curId).offsetTop;
-            var endOffset;
-            if (index + 1 < idList.length) {
-                endOffset = document.getElementById(nexId).offsetTop;
-            } else {
-                endOffset = 0x7fffffff;
+        next.onclick = function() {
+            initImgs(index);
+            index += 1;
+            if (index > 4) {
+                index = 1;
             }
-            if (currentDistance >= startOffset && currentDistance < endOffset) {
-                document.getElementById(chsId).style.display = 'block';
-                // document.getElementById('href-' + curId).style.textDecoration = "underline";
-            } else {
-                document.getElementById(chsId).style.display = 'none';
-                // document.getElementById('href-' + curId).style.textDecoration = "none";
+            animate(-300);
+            btnShow(index);
+        }
 
+        function animate(offset) {
+            var newLeft = parseInt(imgsUl.offsetLeft) + offset;
+            // imgsUl.style.left=newLeft;
+            // console.log("定时器外面:此时offsetLeft"+imgsUl.offsetLeft+">>newLeft:"+newLeft);
+            if (newLeft > -300) {
+                // imgsUl.style.left=-5120+"px";
+                donghua(-1200);
+            } else if (newLeft < -1200) {
+                // imgsUl.style.left=-1280+"px";
+                donghua(-300);
+            } else {
+                donghua(newLeft);
             }
 
         }
-    }
 
-    function underLineTarget() {
-        var currentDistance = document.documentElement.scrollTop;
-        var targetList = [
-            "Part-A",
-            "Part-A1",
-            'Part-A2',
-            'Part-B',
-            'Part-B1',
-            'Part-B2',
-            'Part-C',
-            'Part-C1',
-            'Part-C2',
-            'Part-D',
-            'Part-D1',
-            'Part-D2',
-            'Part-D3'
-        ]
-        var i;
-        for (i = 0; i < targetList.length; i++) {
-            var curId = targetList[i];
-            var nexId = targetList[i + 1];
-            var startOffset = document.getElementById(curId).offsetTop;
-            var endOffset;
-            if (i + 1 < targetList.length) {
-                endOffset = document.getElementById(nexId).offsetTop;
-            } else {
-                endOffset = 0x7fffffff;
-            }
-            if (currentDistance >= startOffset && currentDistance < endOffset) {
-                if (document.getElementById('href-' + curId).className.indexOf(' active') == -1) {
-                    document.getElementById('href-' + curId).className += " active";
+        function donghua(offset) {
+            clearInterval(animTimer);
+            animTimer = setInterval(function() {
+                imgsUl.style.left = imgsUl.offsetLeft + (offset - imgsUl.offsetLeft) / 10 + "px";
+                if (imgsUl.offsetLeft - offset < 10 && imgsUl.offsetLeft - offset > -10) { //如果偏移量已经等于指定好的偏移量，则秦楚定时器
+                    imgsUl.style.left = offset + "px";
+                    clearInterval(animTimer);
+                    //开启定时轮播
+                    play();
                 }
+            }, 20);
+        }
 
-            } else {
-                document.getElementById('href-' + curId).className = document.getElementById('href-' + curId).className.replace(' active', '');
+        function initImgs(cur_index) {
+            clearInterval(timer);
+            clearInterval(animTimer);
+            var off = cur_index * 300;
+            imgsUl.style.left = -off + "px";
+        }
+
+        function play() {
+            timer = setInterval(function() {
+                next.onclick();
+            }, 2000)
+        }
+
+        function btnShow(cur_index) {
+            var list = nav.children;
+            for (var i = 0; i < nav.children.length; i++) {
+                nav.children[i].children[0].className = "hidden";
+            }
+            nav.children[cur_index - 1].children[0].className = "current";
+        }
+        for (var i = 0; i < nav.children.length; i++) {
+            nav.children[i].index = i;
+            var sd = nav.children[i].index;
+            nav.children[i].onmouseover = function() {
+                index = this.index + 1;
+                initImgs(this.index + 1);
+                btnShow(this.index + 1);
+            }
+            nav.children[i].onmouseout = function() {
+                play();
             }
         }
-    }
-
-
-    window.onscroll = function() {
-        menuScroll();
-        chsScroll();
-        underLineTarget();
-
-    }
-
-
-    function rollTo(target) {
-        window.location.hash = target;
-        alert(target);
-    }
-
-    function displayChs(btnGroup) {
-        if (btnGroup.children[1].className.indexOf(' show') == -1) {
-            btnGroup.children[1].className += ' show';
-        };
-
-    }
-
-    function hiddenChs(btnGroup) {
-        if (btnGroup.children[1].className.indexOf(' show') > 0) {
-            btnGroup.children[1].className = btnGroup.children[1].className.replace(' show', '');
-        };
+        //end slider
     }
 </script>
 
@@ -288,12 +278,55 @@
                                     </ul>
                                 </div>
                                 <div class="col-lg-5 col-xl-right mb-4">
-                                    <img src="images/topA.png">
-                                    <img src="images/topB.png">
-                                    <div class=" captiontext ">
-                                        <a href="featured_images/ " style="text-align: center;">See all Featured Images</a>
+                                    <div id="preous">
+                                        <img src="images/left_slider.png">
                                     </div>
+                                    <div id="wrapper-slider">
+                                        <div id='imgs' style="margin-bottom: 20px;">
+                                            <ul>
+                                                <li>
+                                                    <a href="#"><img src="images/slider/4.png "></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><img src="images/slider/1.png "></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><img src="images/slider/2.png "></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><img src="images/slider/3.png "></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><img src="images/slider/4.png "></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><img src="images/slider/1.png "></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="clear"></div>
+                                        <section id="nav" style="margin-left: 40px;">
+                                            <ul>
+                                                <li>
+                                                    <a class="current"></a>
+                                                </li>
+                                                <li>
+                                                    <a></a>
+                                                </li>
+                                                <li>
+                                                    <a></a>
+                                                </li>
+                                                <li>
+                                                    <a></a>
+                                                </li>
+
+                                            </ul>
+                                        </section>
+                                    </div>
+                                    <div id="next"><img src="images/right_slider.png"></div>
+
                                 </div>
+
                             </div>
                             <div class="row ">
 
@@ -304,48 +337,48 @@
                                     <ul class="whatsnew ">
 
                                         <li class="item mb-1 inthenews ">
-                                            <a href="https://conferences.sigcomm.org/sigcomm/2021/">[IMC2020] Gain without Pain: Offsetting DP-injected Nosies Stealthily in Cross-device Federated Learning, Wenzhuo Yang, Yipeng Zhou.</a>
+                                            <a href="https://conferences.sigcomm.org/sigcomm/2021/ ">[IMC2020] Gain without Pain: Offsetting DP-injected Nosies Stealthily in Cross-device Federated Learning, Wenzhuo Yang, Yipeng Zhou.</a>
 
                                         </li>
 
                                         <li class="item mb-1 inthenews ">
-                                            <a href="https://www.usenix.org/conference/nsdi22">[IMC2020] Collaboratively Replicating Encoded Content on RSUs to Enhance Video Services for Vehicles, Yipeng Zhou, Jiawen Chen.</a>
+                                            <a href="https://www.usenix.org/conference/nsdi22 ">[IMC2020] Collaboratively Replicating Encoded Content on RSUs to Enhance Video Services for Vehicles, Yipeng Zhou, Jiawen Chen.</a>
 
                                         </li>
                                         <li class="item mb-1 inthenews ">
-                                            <a href="https://www.usenix.org/conference/nsdi22">[IMC2020] Collaboratively Replicating Encoded Content on RSUs to Enhance Video Services for Vehicles, Yipeng Zhou, Jiawen Chen.</a>
+                                            <a href="https://www.usenix.org/conference/nsdi22 ">[IMC2020] Collaboratively Replicating Encoded Content on RSUs to Enhance Video Services for Vehicles, Yipeng Zhou, Jiawen Chen.</a>
 
                                         </li>
                                         <li class="item mb-1 inthenews ">
-                                            <a href="https://www.usenix.org/conference/nsdi22">[IMC2020] Collaboratively Replicating Encoded Content on RSUs to Enhance Video Services for Vehicles, Yipeng Zhou, Jiawen Chen.</a>
+                                            <a href="https://www.usenix.org/conference/nsdi22 ">[IMC2020] Collaboratively Replicating Encoded Content on RSUs to Enhance Video Services for Vehicles, Yipeng Zhou, Jiawen Chen.</a>
 
                                         </li>
 
                                     </ul>
                                 </div>
                                 <div class="col-lg-3 col-xl-4 text-left blogfeed ">
-                                    <h2><a href="#">Blog</a></h2>
+                                    <h2><a href="# ">Blog</a></h2>
 
                                     <ul class="whatsnew " id="blogfeed ">
                                         <li class="item mb-1 inthenews ">
-                                            <a href="https://jessiehuiwang.github.io/papers.html">jessiehuiwang's page. </a>
+                                            <a href="https://jessiehuiwang.github.io/papers.html ">jessiehuiwang's page. </a>
 
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="col-lg-3 col-xl-right text-left blogfeed  ">
+                                <div class="col-lg-3 col-xl-right text-left blogfeed ">
                                     <h2><a href="# ">Sponsor</a></h2>
                                     <div class="col-sm-12 ">
-                                        <div style="float: left;">
-                                            <a href="http://www.nsfc.gov.cn/"><img src="images/zr-logo.jpg " style="width: 100px;padding-left: 10px;"></a>
+                                        <div style="float: left; ">
+                                            <a href="http://www.nsfc.gov.cn/ "><img src="images/zr-logo.jpg " style="width: 100px;padding-left: 10px; "></a>
                                             <br><br>
-                                            <a href="https://jessiehuiwang.github.io/research.html">NSFC 62072269</a>
+                                            <a href="https://jessiehuiwang.github.io/research.html ">NSFC 62072269</a>
                                         </div>
 
-                                        <div style="float: left;margin-left: 40px;">
-                                            <a href="http://en.most.gov.cn/ "><img src="images/MOST.png" style="width: 100px;margin-top: 20px;margin-bottom: 20px;"></a>
+                                        <div style="float: left;margin-left: 40px; ">
+                                            <a href="http://en.most.gov.cn/ "><img src="images/MOST.png " style="width: 100px;margin-top: 20px;margin-bottom: 20px; "></a>
                                             <br><br>
-                                            <a href="https://jessiehuiwang.github.io/research.html">2020YFE0200500</a>
+                                            <a href="https://jessiehuiwang.github.io/research.html ">2020YFE0200500</a>
                                         </div>
 
 
