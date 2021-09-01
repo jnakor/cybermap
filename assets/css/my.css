@@ -1,0 +1,21 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.docs-menu ul li {
+    font-size: 130%;
+    line-height: 1.4;
+    font-weight: 800;
+    margin: 0;
+    padding: 4px 0
+}
+
+.docs-menu .nav .nav li>a {
+    font-size: 50%;
+    color: dimgray;
+}
+
+.content a {
+    text-decoration: none;
+}
