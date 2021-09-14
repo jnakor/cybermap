@@ -11522,8 +11522,8 @@ a.text-dark:focus {
         max-width: 16.66666667%
     }
     .col-lg-3 {
-        flex: 0 0 41.66666666%;
-        max-width: 41.66666666%
+        flex: 0 0 25%;
+        max-width: 25%
     }
     .col-lg-4 {
         flex: 0 0 33.33333333%;
