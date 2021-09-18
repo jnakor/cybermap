@@ -1,0 +1,143 @@
+<!DOCTYPE HTML>
+<!--
+	TXT by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>路由器节点中介中心性</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<div class="logo container">
+						<div>
+							<h1><a href="../../index.html" id="logo">ITRANCS: </a></h1>
+							<p>Internet Topology and Routing Analysis for National Cyber Security</p>
+						</div>
+					</div>
+				</header>
+
+
+			<!-- Nav -->
+				<nav id="nav">
+					<ul>
+						<li><a href="../../index.html">主页</a></li>
+						<li>
+							<a href="#">资源</a>
+							<ul>
+								<li><a href="../../resource/lg_resource.html">探针资源</a></li>
+								<li><a href="../../resource/data_resource.html">数据资源</a></li>
+								<li><a href="../../resource/geolocation_resource.html">地理定位资源</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">数据改进</a>
+							<ul>
+								<li><a href="../../improvement/routing_inference.html">全球互联网路由态势感知平台</a></li>
+							</ul>
+						</li>
+						<li class="current">
+							<a href="#">互联网拓扑路由分析</a>
+							<ul>
+								<li><a href="../logic_analysis.html">逻辑空间分析</a></li>
+								<li><a href="../geography_analysis.html">地理空间分析</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">工具</a>
+						</li>
+						<li>
+							<a href="#">关于</a>
+						</li>
+					</ul>
+				</nav>
+
+			<!-- Main -->
+				<section id="main">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="content">
+
+									<!-- Content -->
+
+										<article class="box page-content">
+
+											<header>
+												<h2>路由器节点中介中心性</h2>
+												<ul class="meta">
+													<li class="icon fa-clock">2021-02-02</li>
+												</ul>
+											</header>
+
+											<section>
+												<p style="margin-bottom:0px">
+													中介中心性衡量的是一个节点承载的路由的数量。一个节点`v_(i)`的中介中心性`C_(b)(v_(i))`可以通过以下的公式得到：
+												</p>
+												<div align="center"><img src="img/formula6.png" style="margin-top:0px; margin-bottom:0px; width: 20%; height: 28%" align="middle" alt="" /></div>
+												<p style="margin-bottom:0px">
+													其中`P`代表了路由路径的总数，`V`代表节点的集合，`p_(uw)(v_(i))`代表从节点`u`出发经过节点`v_(i)`到达节点`w`的路径，链路的中介中心性的计算与之类似。
+												</p>
+												<div align="center"><img src="img/Figure_30.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" /></div>
+												<div align="center"><img src="img/Figure_31.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" /></div>
+												<p style="margin-bottom:0px">
+													我们利用CAIDA的ITDK和Ark的拓扑和路由数据计算路由器拓扑各个节点的中介中心性。上图展示2019年1月路由器拓扑各节点的中介中心性及其CDF分布，可以看到绝大多数的路由器节点的中介中心性都很小，大约仅有0.01%的节点的中介中心性超过0.00067。
+												</p>
+												<div align="center"><img src="img/table8.png" style="margin-top:0px; margin-bottom:0px; width: 50%; height: 50%" align="middle" alt="" /></div>
+												<p style="margin-bottom:0px">
+													上表展示了路由器级别拓扑中中介中心性最高的十个路由器及其所属的AS。中介中心性最高的前100个路由器中有18个来自AS13489，有10个来自AS6057，有10个来自AS8220。在中介中心性最高的前100个路由器中，13个属于美国、7个属于加拿大、5个属于英国、3个属于中国、3个属于印度、2个属于俄罗斯。
+												</p>
+												<div align="center"><img src="img/table9.png" style="margin-top:0px; margin-bottom:0px; width: 50%; height: 50%" align="middle" alt="" /></div>
+												<p>
+													上表展示了路由器级别中介中心性最高的十个路由器链路及其所属的AS。
+												</p>
+
+											</section>
+
+										</article>
+
+								</div>
+							</div>
+							
+
+							</div>
+						</div>
+					</div>
+				</section>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<div class="container">
+						
+
+						<!-- Copyright -->
+							<div id="copyright">
+								<ul class="menu">
+									<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								</ul>
+							</div>
+
+					</div>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/jquery.dropotron.min.js"></script>
+			<script src="../../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../../assets/js/browser.min.js"></script>
+			<script src="../../assets/js/breakpoints.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<script src="../../assets/js/main.js"></script>
+			<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script>
+
+	</body>
+</html>

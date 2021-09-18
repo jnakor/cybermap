@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<!--
+	TXT by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>AS依赖变化趋势</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<div class="logo container">
+						<div>
+							<h1><a href="../../index.html" id="logo">ITRANCS: </a></h1>
+							<p>Internet Topology and Routing Analysis for National Cyber Security</p>
+						</div>
+					</div>
+				</header>
+
+
+			<!-- Nav -->
+				<nav id="nav">
+					<ul>
+						<li><a href="../../index.html">主页</a></li>
+						<li>
+							<a href="#">资源</a>
+							<ul>
+								<li><a href="../../resource/lg_resource.html">探针资源</a></li>
+								<li><a href="../../resource/data_resource.html">数据资源</a></li>
+								<li><a href="../../resource/geolocation_resource.html">地理定位资源</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">数据改进</a>
+							<ul>
+								<li><a href="../../improvement/routing_inference.html">全球互联网路由态势感知平台</a></li>
+							</ul>
+						</li>
+						<li class="current">
+							<a href="#">互联网拓扑路由分析</a>
+							<ul>
+								<li><a href="../logic_analysis.html">逻辑空间分析</a></li>
+								<li><a href="../geography_analysis.html">地理空间分析</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">工具</a>
+						</li>
+						<li>
+							<a href="#">关于</a>
+						</li>
+					</ul>
+				</nav>
+
+			<!-- Main -->
+				<section id="main">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="content">
+
+									<!-- Content -->
+
+										<article class="box page-content">
+
+											<header>
+												<h2>AS依赖变化趋势</h2>
+												<ul class="meta">
+													<li class="icon fa-clock">2021-02-05</li>
+												</ul>
+											</header>
+
+											<section>
+												<p>
+													在静态拓扑特征分析中我们已经发现，AS级别的拓扑具有无标度性，也就是说互联网中极少数的节点具有极强的重要性。在关键节点的识别过程中，我们也发现了无论是一哪种指标来衡量节点的关键程度，总是只有极少数节点具有极高的关键程度。那么对于一个AS来说，它是否对其他的AS的依赖程度如何呢？它对其他AS的依赖是否是均匀分布的，或者是波动幅度较大，极其依赖于某几个AS？带着这样的问题，我们首先定义了AS之间的依赖程度，其次利用信息熵的概念来衡量AS对其他AS的依赖的波动程度，最后我们将一个国家的AS看成一个整体，研究一个国家是否会对某些AS产生严重依赖，及其演化趋势。
+													
+												</p>
+												<h3>AS之间依赖程度的定义</h3>
+												<p style="margin-bottom:0px">
+													首先，我们要定义AS之间的依赖程度。对于一个AS `n`，我们称从`n`出发的流量与到达`n`的流量之和为与AS `n`有关的流量总和。而在这些流量中经过AS `v`的流量占流量总和的比例就是AS `n`对AS `v`的依赖程度。AS `n`对AS `v`的依赖程度`D_{n}^{v}`可以用下面的公式计算：
+												</p>
+
+												<div align="center"><img src="img/formula14.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" /></div>
+												<p>
+													其中`\sigma _{ns}`代表从AS `n`出发的流量，`\sigma _{sn}`代表到达AS `n`的流量，`\sigma _{ns}(v)`代表从AS `n`出发经过AS `v`的流量，`\sigma _{ns}(v)`代表到达AS `n`且经过AS `v`的流量。
+												</p>
+												<h3>AS对其他AS的依赖的波动</h3>
+												<p style="margin-bottom:0px">
+													在定义AS之间的依赖程度之后，我们需要知道一个AS对其他AS的依赖的波动程度，是否符合均匀分布吗，是否受某几个AS的支配。因此，我们引入信息熵的概念。它衡量的是信息的不确定性，熵越大表示信息的不确定性越大，信息量越大。一组数据`X `的信息熵`H(X) `可以通过下面的公式来计算：
+												</p>
+												<div align="center"><img src="img/formula15.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" /></div>
+
+												<p style="margin-bottom:0px">
+													那么一个AS n对其他AS的依赖的波动程度`H(n)`就可以通过下面的公式计算：
+												</p>
+
+												<div align="center"><img src="img/formula16.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" /></div>
+												<p>
+													其中`H(n)`越小，代表AS n对其他AS的依赖程度越平均，波动程度越小；`H(n) `越大，代表AS n对其他AS的依赖的波动程度越大，受到某些AS的支配。
+												</p>
+												<h3>国家对其他AS的依赖的波动及其演化趋势</h3>
+												<p style="margin-bottom:0px">
+													为了让我们的实验结果更有意义，我们研究将一个国家所拥有的AS看成一个整体，对其他AS的依赖的波动程度。我们重点研究六个国家，分别是美国、中国、俄罗斯、日本、英国和印度。一个国家对其他AS的依赖的波动程度越大，说明一个国家的AS受某些AS支配的程度越高。
+												</p>
+												<div align="center"><img src="img/Figure_55.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" /></div>
+												<p style="margin-bottom:0px">
+													如上图所示，展示了六个国家对其他AS的依赖的波动程度及其演化趋势。可以看出每个国家对其他AS的依赖的波动程度都在逐年增加。日本做的最好，对其他AS的依赖的波动程度最小，依赖较为平均。美国做的最差，对其他AS的依赖的波动程度最大。
+												</p>
+
+											</section>
+
+										</article>
+
+								</div>
+							</div>
+							
+
+							</div>
+						</div>
+					</div>
+				</section>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<div class="container">
+						
+
+						<!-- Copyright -->
+							<div id="copyright">
+								<ul class="menu">
+									<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								</ul>
+							</div>
+
+					</div>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/jquery.dropotron.min.js"></script>
+			<script src="../../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../../assets/js/browser.min.js"></script>
+			<script src="../../assets/js/breakpoints.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<script src="../../assets/js/main.js"></script>
+			<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script>
+
+	</body>
+</html>

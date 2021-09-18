@@ -1,0 +1,297 @@
+<!DOCTYPE HTML>
+<!--
+	TXT by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>网络扁平化趋势</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<div class="logo container">
+						<div>
+							<h1><a href="../../index.html" id="logo">ITRANCS: </a></h1>
+							<p>Internet Topology and Routing Analysis for National Cyber Security</p>
+						</div>
+					</div>
+				</header>
+
+
+			<!-- Nav -->
+				<nav id="nav">
+					<ul>
+						<li><a href="../../index.html">主页</a></li>
+						<li>
+							<a href="#">资源</a>
+							<ul>
+								<li><a href="../../resource/lg_resource.html">探针资源</a></li>
+								<li><a href="../../resource/data_resource.html">数据资源</a></li>
+								<li><a href="../../resource/geolocation_resource.html">地理定位资源</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">数据改进</a>
+							<ul>
+								<li><a href="../../improvement/routing_inference.html">全球互联网路由态势感知平台</a></li>
+							</ul>
+						</li>
+						<li class="current">
+							<a href="#">互联网拓扑路由分析</a>
+							<ul>
+								<li><a href="../logic_analysis.html">逻辑空间分析</a></li>
+								<li><a href="../geography_analysis.html">地理空间分析</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">工具</a>
+						</li>
+						<li>
+							<a href="#">关于</a>
+						</li>
+					</ul>
+				</nav>
+
+			<!-- Main -->
+				<section id="main">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="content">
+
+									<!-- Content -->
+
+										<article class="box page-content">
+
+											<header>
+												<h2>网络扁平化趋势</h2>
+												<ul class="meta">
+													<li class="icon fa-clock">2021-02-03</li>
+												</ul>
+											</header>
+
+											<section>
+												<p style="margin-bottom:0px">
+													传统的研究认为，互联网具有层次化的特点。不同的节点在互联网中的地位并不相同。以往的研究和测量结果表明，有10-20个左右的AS彼此之间通过对等关系相互连接，可以到达全球互联网的任何一个角落，这些AS被认为是网络层次中最高的核心，被称为Tier-1，这些Tier-1的AS通常是提供全球范围传输的服务的大型ISP。一些国家和区域间的大型ISP，从Tier-1的AS购买传输服务，这些AS被化为网络的第二层次，被称为Tier-2。而剩余的一些小型区域ISP就被划为第三个层次Tier-3。作为网络边缘的内容提供者、公司网、校园网等，不提供传输服务，只向ISP购买传输服务，其本身只负责产生流量和接收流量，这些AS被称为stub AS。如下图展示了传统认知下的网络层次。
+												</p>
+												<div align="center"><img src="img/Figure_41.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" /></div>
+												<p style="margin-bottom:0px">
+													但是最近的研究表明互联网的结构呈现扁平化的趋势。这种趋势一方面是源自CDN技术的兴起和内容提供者的增加，导致作为流量终点的内容提供者更靠近作为流量发起的用户。另一方面，IXP的大量出现使得AS之间peer to peer关系的代价越来越小，很多底层的AS通过建立对等关系来降低传输的代价。如下图所示，在最开始的情况下，两个底层AS：x和y想要帮助他们的客户z和w进行流量传输，必须要借助顶层的AS T来进行传输，x和y都需要向高层的AS T支付传输流量的费用。而在x和y建立peer to peer关系后，他们就可以直接互相传输彼此之间的流量，而不需要借助上层的AS，降低了传输时的代价，也间接导致了网络的扁平化。
+												</p>
+												<div align="center" style="margin-top:0px; margin-bottom:0px">
+													<img src="img/Figure_42.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%"/>
+													<h3>底层AS建立对等关系前的流量传输路径</h3>
+												</div>
+												<div align="center">
+													<img src="img/Figure_43.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" alt="" />
+													<h3>底层AS建立对等关系后的流量传输路径</h3>
+												</div>
+												<p style="margin-bottom:0px">
+													在本节中，我们利用三个划分网络层次的方法，结合历史的拓扑数据，研究网络扁平化的趋势。三种划分网络层次的方法分别为rich-club，k-core以及SARK层次模型。采用的拓扑数据来自CAIDA的AS relationships数据库，提取2010年-2019年十年的1月1号的AS关系拓扑数据进行研究。
+												</p>
+											</section>
+
+											<section>
+												<h3>基于rich-club分层模型的网络扁平化趋势分析</h3>
+												<p style="margin-bottom:0px">
+													rich-club是图论中的一个重要概念，它衡量的是不同层次的节点之间连接的紧密程度。他的计算方法是这样的，将节点按照度数从大到小进行排序，前`n`个节点的rich-club系数就是这`n`个节点彼此之间的边的总数除以`\frac{n\times (n-1)}{2}`，`\frac{n\times (n-1)}{2}`是这`n`个节点彼此相连的边的最大值。
+												</p>
+
+											</section>
+											<div class="col-12">
+
+												<!-- Features -->
+													<section class="box features">
+														<h2 class="major"><span>2010-2018年历年AS拓扑rich-club系数</span></h2>
+														<div>
+															<div class="row">
+																<div class="col-3 col-6-medium col-12-small">
+
+																	<!-- Feature -->
+																		<section class="box feature">
+																			<a class="image featured"><img src="img/Figure_44.png" alt="" /></a>
+																			<h3>2010年</h3>
+																			
+																		</section>
+
+																</div>
+																<div class="col-3 col-6-medium col-12-small">
+
+																	<!-- Feature -->
+																		<section class="box feature">
+																			<a class="image featured"><img src="img/Figure_45.png" alt="" /></a>
+																			<h3>2012年</h3>
+																			
+																		</section>
+
+																</div>
+																<div class="col-3 col-6-medium col-12-small">
+
+																	<!-- Feature -->
+																		<section class="box feature">
+																			<a class="image featured"><img src="img/Figure_46.png" alt="" /></a>
+																			<h3>2014年</h3>
+																			
+																		</section>
+
+																</div>
+																<div class="col-3 col-6-medium col-12-small">
+
+																	<!-- Feature -->
+																		<section class="box feature">
+																			<a class="image featured"><img src="img/Figure_47.png" alt="" /></a>
+																			<h3>2016年</h3>
+																			
+																		</section>
+
+																</div>
+																<div class="col-3 col-6-medium col-12-small">
+
+																	<!-- Feature -->
+																		<section class="box feature">
+																			<a class="image featured"><img src="img/Figure_48.png" alt="" /></a>
+																			<h3>2018年</h3>
+																			
+																		</section>
+
+																</div>
+																
+															</div>
+														</div>
+													</section>
+
+											</div>
+											<section>
+												<p style="margin-bottom:0px">
+													上图展示了2010、2012、2014、2016、2018年这五年的AS拓扑中rich-club系数随着节点的按照从大到小的顺序的变化。我们选取了最核心的300个节点进行研究，可以看到随着`n`的增大的下降，前`n`个节点的rich-club系数并不是单调递减的，而是出现了新的波峰。这一结果是反直觉的，因为正常情况下，位于外层的节点之间连接的紧密程度应当小于内部的核心节点。而出现这种情况，就意味着外层节点之间的连接更紧密，印证了我们之前所讨论的底层之间节点通过相互连接来相互靠近。从图中可以看到，随着时间的推移，波峰出现的次数越来越多，这意味着位于相对底层的节点对顶层核心的依赖程度逐渐减弱，位于外层的节点正在逐渐成为核心，核心的边界变得模糊，彼此之间的距离逐渐靠近，说明网络正在逐渐趋于扁平化。
+												</p>
+
+											</section>
+
+											<section>
+												<h3>基于k-core分层模型的网络扁平化趋势分析</h3>
+												<p style="margin-bottom:0px">
+													k-core分解是图论中一个经典的划分网络层次的方法，它也是根据节点的度数进行的层次划分。
+												</p>
+												<ul style="margin-bottom:0px">
+													<li><b>定义1：k-core </b>k-core是拓扑的一个子图，这个子图是通过移除拓扑中所有度数小于等于k的节点之后得到的子图，如果移除节点后出现了新的度数小于等于k的节点，那么就继续移除，直至子图中所有的节点的度数都大于k，这个子图就被称为k-core。</li>
+													<li><b>定义2：shell-index </b>如果一个节点出现在k-core子图中，但是不在(k+1)-core子图中，那么这个节点的shell-index为k，一个拓扑中shell-index的最大值被称为`max-shell`。</li>
+													<li><b>定义3：k-shell </b>在一个拓扑中所有shell-index为k的节点构成的集合被称为k-shell，每个k-shell中包含的节点的个数记为`N_{k-shell}`，特别的，shell-index为max-shell的节点构成的集合的节点个数记为`N_{max-shell}`</li>
+
+												</ul>
+												<div align="center" style="margin-top:0px; margin-bottom:0px">
+													<img src="img/Figure_49.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%"/>
+													<h3>`max-shell`以及`N_{max-shell}`的演化趋势</h3>
+												</div>
+												
+												<p style="margin-bottom:0px">
+													如上图所示，我们首先研究了`max-shell`以及`N_{max-shell}`随着时间的演化趋势，可以看到`max-shell`和`N_{max-shell}`都在上升，这意味着作为核心的节点越来越多，而且分层的层数越来越多，这意味着层与层之间越来越难以区分。<br>
+													接着我们研究了每个shell的节点比例随时间的的演化趋势，`P_{k-shell}`指的是`k-shell`的节点数量占全部节点数量的百分比，可以通过下面的公式计算：
+												</p>
+												<div align="center"><img src="img/formula10.png" style="margin-top:0px; margin-bottom:0px; width: 20%; height: 28%" align="middle" alt="" /></div>
+												<p style="margin-bottom:0px">
+													其中`N_{AS}`代表了AS的总数。如下图所示，我们分别将2010-2014年以及2015-2019年五年的数据分别进行了整合，可以看出处于核心位置的节点的占比在升高，这说明很大一部分的节点在进入核心层次，核心层次的节点数量在增加，网络趋向扁平化。
+												</p>
+												<div align="center">
+													<img src="img/Figure_50.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" alt="" />
+													<h3>每个shell的节点比例的演化趋势</h3>
+												</div>
+											</section>
+
+											<section>
+												<h3>基于SARK分层模型的网络扁平化趋势分析</h3>
+												<p style="margin-bottom:0px">
+													SARK层次模型最初是由<a href='#ref'>[1]</a>提出的。之前的两个方法把AS拓扑当作无向图来考虑，只在图论的基础上进行分析，忽略了AS之间的商业关系。而SARK层次模型则考虑到了AS之间的商业关系，并根据商业关系对网络的层次进行了划分。它将网络从核心到边缘划分成五个层次，分别是：dense core, transit core, outer core, small regional ISP以及customer。<br>
+													在这个模型中，AS拓扑被看作是一个有向图，对于AS之间的provider to customer的关系就是一条由provider指向customer的边，而AS之间的peer to peer关系就是两条AS之间互相连接的边。首先对位于网络边缘的两个层次——small regional ISP以及customer进行了定义，其次对剩余的核心部分，按照从内到外的顺序进行定义。
+												</p>
+												<ul style="margin-bottom:0px">
+													<li><b>customer:</b>customer是位于网络最外层的节点，这些节点没有customer，通过向其他ISP购买传输服务来实现流量的发送和接收。在AS拓扑图中所有出度为0的节点就是处于customer层的节点。</li>
+													<li><b>small regional ISP:</b>这一类节点代表小型区域间ISP，通常只有1个或者数个customer。在拓扑中删去所有customer层的AS，在剩下的拓扑中度数为0的节点就是属于small regional ISP这一层次的，删除这些节点，新产生的出度为0的节点仍为small regional ISP层，直到没有任何节点的出度为0，剩余的哪些节点就是网络的核心。</li>
+													<li><b>dense core:</b>densor core是网络核心中最高层的节点，这些节点彼此连接的非常好。densor core是网络核心中最大的子集`N`，在这个子集中任意一个节点到其他节点的度数大于`|N|/2`。</li>
+													<li><b>transit core:</b>transit core是在dense core的基础上定义的，在网络核心有这样的一些AS，他们只与最高层的dense core以及彼此之间相连，而很少与这些节点之外的节点相连，这部分AS称为transit core。transit core是网络核心中最小的子集`N`，子集内的节点到子集外的节点的边的总和小于`|N|/2`。</li>
+													<li><b>outer core:</b>在网络核心中既不属于densor core、又不属于transit core的节点被称为outer core。</li>
+
+												</ul>
+												<div align="center"><img src="img/Figure_51.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" /></div>
+												<p style="margin-bottom:0px">
+													上图展示了各个层次的AS的数量的演化趋势，可以看出每个层次的AS都在稳定的增长。为了研究网络的扁平化趋势，我们首先定义了一个节点平均层次的概念，平均层次AverageLayer是通过下面的公式计算得到的：
+												</p>
+												<div align="center"><img src="img/formula11.png" style="margin-top:0px; margin-bottom:0px; width: 20%; height: 28%" align="middle" alt="" /></div>
+												<p style="margin-bottom:0px">
+													其中`N_{i}`就是第`i`层的节点总数，`N_{1}`代表dense core层中的节点总数，`N_{5}`代表customer层中的节点总数。实际上平均层次是对所有节点按照其层次进行加权平均。
+												</p>
+												<div align="center"><img src="img/Figure_52.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" /></div>
+												<p style="margin-bottom:0px">
+													上图展示了节点的平均层次随时间的变化趋势，可以看出随着时间的推移，节点的平均层次在逐渐减小，这说明节点在向着核心层次移动，暗示着网络在向扁平化趋势发展。<br>
+													接下来我们研究不同层次的节点之间的边的数量的变化，我们定义两个概念，分别衡量网络核心中层次与层次之间的联系，以及整个互联网的层次与层次之间的联系。第一个概念是`R_(c o r e)`，它可以用下面的公式来计算：
+												</p>
+												<div align="center"><img src="img/formula12.png" style="margin-top:0px; margin-bottom:0px; width: 20%; height: 28%" align="middle" alt="" /></div>
+												<p style="margin-bottom:0px">
+													其中`E_{ij}`代表第`i`层次的节点与第`j`层次的节点之间的边的总数，这一概念衡量的是网络核心的三个层次彼此之间的联系，为了防止由于节点数量得到增加和减少带来的影响，将边的总和除以网络核心的三个层次的节点总数。与此类似，定义的第二个概念是`R_(i n t e r n e t)`，它是由下面的公式计算得到的：
+												</p>
+												<div align="center"><img src="img/formula13.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 35%" align="middle" alt="" /></div>
+												<p style="margin-bottom:0px">
+													它代表的是整个互联网不同层次的节点之间的联系情况，同样的，为了防止由于节点数量的增加带来的影响，我们将边的数量除以整个互联网的节点的数量。
+												</p>
+												<div align="center"><img src="img/Figure_53.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" /></div>
+												<p style="margin-bottom:0px">
+													上图展示了不同层次的节点之间的联系情况的演化趋势，可以看出在网络核心的三个层次之间的联系越来越紧密，而整个互联网的不同层次之间的联系较为稳定。这说明在网络的核心中不同层次之间的边界正在变得模糊，层次与层次之间的距离正在逐渐靠近。核心正在成为一个无法分割的整体，这意味着网络层次的扁平化趋势很明显。
+												</p>
+											</section>
+
+
+											<section>
+												<h3 id="ref">参考文献</h3>
+												<p>
+													[1] Lakshminarayanan Subramanian, Sharad Agarwal, Jennifer Rexford, and Randy H Katz. Characterizing the internet hierarchy from multiple vantage points. In Proceedings. Twenty-First Annual Joint Conferenceof the IEEE Computer and Communications Societies, volume 2, pages 618–627. IEEE, 2002.
+
+												</p>
+											</section>
+
+										</article>
+
+								</div>
+							</div>
+							
+
+							</div>
+						</div>
+					</div>
+				</section>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<div class="container">
+						
+
+						<!-- Copyright -->
+							<div id="copyright">
+								<ul class="menu">
+									<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								</ul>
+							</div>
+
+					</div>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/jquery.dropotron.min.js"></script>
+			<script src="../../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../../assets/js/browser.min.js"></script>
+			<script src="../../assets/js/breakpoints.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<script src="../../assets/js/main.js"></script>
+			<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script>
+
+	</body>
+</html>

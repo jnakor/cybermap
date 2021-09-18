@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<!--
+	TXT by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>AS节点特征向量中心性</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<div class="logo container">
+						<div>
+							<h1><a href="../../index.html" id="logo">ITRANCS: </a></h1>
+							<p>Internet Topology and Routing Analysis for National Cyber Security</p>
+						</div>
+					</div>
+				</header>
+
+
+			<!-- Nav -->
+				<nav id="nav">
+					<ul>
+						<li><a href="../../index.html">主页</a></li>
+						<li>
+							<a href="#">资源</a>
+							<ul>
+								<li><a href="../../resource/lg_resource.html">探针资源</a></li>
+								<li><a href="../../resource/data_resource.html">数据资源</a></li>
+								<li><a href="../../resource/geolocation_resource.html">地理定位资源</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">数据改进</a>
+							<ul>
+								<li><a href="../../improvement/routing_inference.html">全球互联网路由态势感知平台</a></li>
+							</ul>
+						</li>
+						<li class="current">
+							<a href="#">互联网拓扑路由分析</a>
+							<ul>
+								<li><a href="../logic_analysis.html">逻辑空间分析</a></li>
+								<li><a href="../geography_analysis.html">地理空间分析</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">工具</a>
+						</li>
+						<li>
+							<a href="#">关于</a>
+						</li>
+					</ul>
+				</nav>
+
+			<!-- Main -->
+				<section id="main">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="content">
+
+									<!-- Content -->
+
+										<article class="box page-content">
+
+											<header>
+												<h2>AS节点特征向量中心性</h2>
+												<ul class="meta">
+													<li class="icon fa-clock">2021-02-02</li>
+												</ul>
+											</header>
+
+											<section>
+												<p style="margin-bottom:0px">
+													特征向量中心性对一个节点的关键程度的刻画不仅取决于这个节点，还取决于这个节点的邻接节点的关键程度。与重要的节点连接的节点比较重要，与少量有影响的邻居相连的节点其中心性可能超过拥有大量平庸的邻居的节点。特征向量中心性等于其邻居节点的特征向量中心性之和。一个节点的所有邻接节点的中心性越大，那么这个节点的特征向量中心性就越大。每个节点`v_(i)`的特征向量中心性`C_(e)(v_(i))`可以通过以下的公式得到：
+												</p>
+												<div align="center"><img src="img/formula5.png" style="margin-top:0px; margin-bottom:0px; width: 20%; height: 28%" align="middle" alt="" /></div>
+												<p style="margin-bottom:0px">
+												其中`\lambda`代表节点是一个常数；`A_(i,j)`代表节点`v_(i)`与节点`v_(j)`之间是否存在链路，如果存在为1，不存在为0；`C_(e)(v_(j))`代表节点`v_(j)`的特征向量中心性，特征向量中心性的计算需要经过多次迭代，直到达到稳态。</p>
+												<div align="center"><img src="img/Figure_26.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" /></div>
+												<div align="center"><img src="img/Figure_27.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" /></div>
+												<p>
+													上图展示2019年1月AS拓扑各节点的特征向量中心性及其CDF分布，绝大多数的AS具有很小的特征向量中心性，极少的AS具有很大的特征向量中心性，仅有4.3%的节点的特征向量中心性超过了0.0013。
+												</p>
+												<div align="center"><img src="img/table5.png" style="margin-top:0px; margin-bottom:0px; width: 50%; height: 50%" align="middle" alt="" /></div>
+												<p>
+													上表展示了特征向量中心性的AS排名中前十的AS，在特征向量中心性最高的前100个AS中不包含Tier-1的AS。在特征向量中心性最高的前100个AS中，19个属于美国、10个属于俄罗斯、9个属于英国、5个属于法国、4个属于意大利、2个属于德国、2个属于澳大利亚。
+												</p>
+
+											</section>
+
+										</article>
+
+								</div>
+							</div>
+							
+
+							</div>
+						</div>
+					</div>
+				</section>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<div class="container">
+						
+
+						<!-- Copyright -->
+							<div id="copyright">
+								<ul class="menu">
+									<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								</ul>
+							</div>
+
+					</div>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/jquery.dropotron.min.js"></script>
+			<script src="../../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../../assets/js/browser.min.js"></script>
+			<script src="../../assets/js/breakpoints.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<script src="../../assets/js/main.js"></script>
+			<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script>
+
+	</body>
+</html>

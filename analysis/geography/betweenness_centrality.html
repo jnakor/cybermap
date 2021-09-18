@@ -1,0 +1,185 @@
+<!DOCTYPE HTML>
+<!--
+	TXT by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>基于中介中心性的关键节点识别</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<div class="logo container">
+						<div>
+							<h1><a href="../../index.html" id="logo">ITRANCS: </a></h1>
+							<p>Internet Topology and Routing Analysis for National Cyber Security</p>
+						</div>
+					</div>
+				</header>
+
+
+			<!-- Nav -->
+				<nav id="nav">
+					<ul>
+						<li><a href="../../index.html">主页</a></li>
+						<li>
+							<a href="#">资源</a>
+							<ul>
+								<li><a href="../../resource/lg_resource.html">探针资源</a></li>
+								<li><a href="../../resource/data_resource.html">数据资源</a></li>
+								<li><a href="../../resource/geolocation_resource.html">地理定位资源</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">数据改进</a>
+							<ul>
+								<li><a href="../../improvement/routing_inference.html">全球互联网路由态势感知平台</a></li>
+							</ul>
+						</li>
+						<li class="current">
+							<a href="#">互联网拓扑路由分析</a>
+							<ul>
+								<li><a href="../logic_analysis.html">逻辑空间分析</a></li>
+								<li><a href="../geography_analysis.html">地理空间分析</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">工具</a>
+						</li>
+						<li>
+							<a href="#">关于</a>
+						</li>
+					</ul>
+				</nav>
+
+			<!-- Main -->
+				<section id="main">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="content">
+
+									<!-- Content -->
+
+										<article class="box page-content">
+
+											<header>
+												<h2>基于中介中心性的关键节点识别</h2>
+												<ul class="meta">
+													<li class="icon fa-clock">2021-02-06</li>
+												</ul>
+											</header>
+
+											<section>
+												<p style="margin-bottom:0px">
+													中介中心性衡量的是一个节点作为其他两个节点的路径的传输桥梁的次数。在互联网中，一个具有高中介中心性的节点拥有对互联网更强的控制能力，因为用更多的流量会穿越这个节点。<br>
+													对于一个节点`v`的中介中心性` C_{B}(v) `可以用下面的公式计算：
+												</p>
+												<div align="center"><img src="img/formula2.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" /></div>
+												<p style="margin-bottom:0px">
+													其中` \sigma _{st} `代表从节点s到节点t全部路径数量，` \sigma _{st}(v) `代表从节点s到节点t的路径中穿过节点v的数量。但这种计算方法会受到节点数量的影响。为了能够比较不同时间的不同数量的数据集的中介中心性，我们定义了标准化的中介中心性` \overline{C_{B}}(v) `通过下面的公式计算：
+												</p>
+												<div align="center"><img src="img/formula3.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" /></div>
+
+												<p style="margin-bottom:0px">
+													最重要的节点的标准化中介中心性是1，最不重要的节点的标准化中介中心性是0。<br>
+													另一个问题是每个节点对都被认为是相同的权重，这意味着任意两个节点通讯的重要程度都被视为是相同的。但是一些节点之间会传输更多的流量，或者某些节点之间的通讯更加频繁，所以应当被视为更重要的路径。我们定义节点`s`到节点`d`之间的通讯频率为`w_{st}`，我们用traceroute数据集中节点$s$到节点$d$之间的IP路径的数量来估计这个值，也就是说`w_{st}=\sigma _{st}`。我们可以定义加权的中介中心性` C_{B}^{w}(v) `可以通过下面的式子计算：
+												</p>
+												<div align="center"><img src="img/formula4.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" /></div>
+												<p style="margin-bottom:0px">
+													为了能够比较不同时间的数据，我们使用相同的方法对加权中介中心性进行标准化。
+												</p>
+												<table align="center"><tr>
+													<td>
+														<img src="img/Figure_15.png" style="margin-top:0px; margin-bottom:0px; width: 100%; height: 20%" align="middle" alt="" />
+														<h3 align="middle">标准化中介中心性</h3>
+													</td>
+													<td>
+														<img src="img/Figure_16.png" style="margin-top:0px; margin-bottom:0px; width: 100%; height: 20%" align="middle" alt="" />
+														<h3 align="middle">标准化加权中介中心性</h3>
+													</td>
+												</tr></table>
+												<p style="margin-bottom:0px">
+													我们首先利用中介中心性研究大洲的重要程度，如上图所示，展示了大洲的标准化中介中心性以及加权的中介中心性。我们可以看出无论是否加权，亚洲和欧洲的重要程度都在增加，而北美洲的重要程度没有改变，一直是最高的，这意味着北美洲在洲际传输的流量中扮演者重要的角色。
+												</p>
+												<div align="center"><img src="img/table1.png" style="margin-top:0px; margin-bottom:0px; width: 50%; height: 50%" align="middle" alt="" /></div>
+												<p style="margin-bottom:0px">
+													除了对每个大洲的中介中心性进行排名，我们还研究是否存在两个大洲之间的路径有很多穿越第三个大洲，也就是说找到`(s,t,v)`三元组当中`\frac{\sigma _{st}(v)}{\sigma _{st}}`最大的三元组。上表展示了这一结果。以第一行为例，从南美洲到亚洲的100%的路径都要经过北美洲，已完成数据的传输。为了防止由于数据量较少带来的测量偏差，我们不考虑`\sigma _{st}`小于1000的`(s,t,v)`三元组。
+												</p>
+												<table align="center"><tr>
+													<td>
+														<img src="img/Figure_17.png" style="margin-top:0px; margin-bottom:0px; width: 100%; height: 20%" align="middle" alt="" />
+														<h3 align="middle">标准化中介中心性</h3>
+													</td>
+													<td>
+														<img src="img/Figure_18.png" style="margin-top:0px; margin-bottom:0px; width: 100%; height: 20%" align="middle" alt="" />
+														<h3 align="middle">标准化加权中介中心性</h3>
+													</td>
+												</tr></table>
+												<p style="margin-bottom:0px">
+													类似的我们还计算了国家的标准化中介中心性，如上图所示。我们展示了排名最高的三十个国家的标准化中介中心性以及加权中介中心性。显然，随着排名的往后，国家的重要性下降得很快，而且可以看出随着时间的推移，排名靠前的国家的中介中心性在上升；这意味着互联网中占支配地位的国家的支配程度越来越严重，互联网中的幂律分布现象越来越严重。
+												</p>
+												<div align="center">
+													<img src="img/table2.png" style="margin-top:0px; margin-bottom:0px; width: 50%; height: 50%" align="middle" alt="" />
+													<h3>标准化中介中心性最高的十个国家</h3>
+													<img src="img/table3.png" style="margin-top:0px; margin-bottom:0px; width: 50%; height: 50%" align="middle" alt="" />
+													<h3>标准化加权中介中心性最高的十个国家</h3>
+												</div>
+												<p style="margin-bottom:0px">
+													上表分别展示了标准化中介中心性和标准化加权中介中心性；除了标准化加权中介中心性2014年的例外，在其他数据集中中介中心性最高的四个国家都是美国、英国、法国和德国。在所有情况下，美国的中介中心性永远是最高的，而且远比其他国家要高。
+												</p>
+												<div align="center">
+													<img src="img/table4.png" style="margin-top:0px; margin-bottom:0px; width: 50%; height: 50%" align="middle" alt="" />
+												</div>
+												<p style="margin-bottom:0px">
+													同样的，我们研究国家级别的所有` (s,t,v) `三元组当中` \frac{\sigma _{st}(v)}{\sigma _{st}}>0.95 `且`\sigma _{st}>1000`的三元组。以前两行为例，从巴西到中国的流量全部（100%）穿越美国，从墨西哥出发到达中国的流量全部穿越美国。
+												</p>
+											</section>
+
+										</article>
+
+								</div>
+							</div>
+							
+
+							</div>
+						</div>
+					</div>
+				</section>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<div class="container">
+						
+
+						<!-- Copyright -->
+							<div id="copyright">
+								<ul class="menu">
+									<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								</ul>
+							</div>
+
+					</div>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/jquery.dropotron.min.js"></script>
+			<script src="../../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../../assets/js/browser.min.js"></script>
+			<script src="../../assets/js/breakpoints.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<script src="../../assets/js/main.js"></script>
+			<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script>
+
+	</body>
+</html>

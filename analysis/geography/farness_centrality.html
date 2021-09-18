@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+<!--
+	TXT by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>基于距离中心性的关键节点识别</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<div class="logo container">
+						<div>
+							<h1><a href="../../index.html" id="logo">ITRANCS: </a></h1>
+							<p>Internet Topology and Routing Analysis for National Cyber Security</p>
+						</div>
+					</div>
+				</header>
+
+
+			<!-- Nav -->
+				<nav id="nav">
+					<ul>
+						<li><a href="../../index.html">主页</a></li>
+						<li>
+							<a href="#">资源</a>
+							<ul>
+								<li><a href="../../resource/lg_resource.html">探针资源</a></li>
+								<li><a href="../../resource/data_resource.html">数据资源</a></li>
+								<li><a href="../../resource/geolocation_resource.html">地理定位资源</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">数据改进</a>
+							<ul>
+								<li><a href="../../improvement/routing_inference.html">全球互联网路由态势感知平台</a></li>
+							</ul>
+						</li>
+						<li class="current">
+							<a href="#">互联网拓扑路由分析</a>
+							<ul>
+								<li><a href="../logic_analysis.html">逻辑空间分析</a></li>
+								<li><a href="../geography_analysis.html">地理空间分析</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">工具</a>
+						</li>
+						<li>
+							<a href="#">关于</a>
+						</li>
+					</ul>
+				</nav>
+
+			<!-- Main -->
+				<section id="main">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="content">
+
+									<!-- Content -->
+
+										<article class="box page-content">
+
+											<header>
+												<h2>基于距离中心性的关键节点识别</h2>
+												<ul class="meta">
+													<li class="icon fa-clock">2021-02-06</li>
+												</ul>
+											</header>
+
+											<section>
+												<p style="margin-bottom:0px">
+													在连通图中，一个节点越靠近中心，它离其他所有结点的距离越近。在逻辑分析的研究中，我们已经使用了接近中心性这一概念来衡量节点与其他节点之间的接近程度。不过接近中心性的定义缺乏实际意义，我们不妨将接近中心性的定义公式取倒数，就变成了下面的公式：
+												</p>
+												<div align="center"><img src="img/formula5.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" /></div>
+												<p>
+													其中` | V | `代表图中的节点总数，`d(s,t)`代表从节点`s`到节点`t`之间的距离。实际上就是一个节点到其他所有节点的平均路径长度，我们称之为距离中心性。一个节点的距离中心性越大，它就越远离网络的中心。其中`d(s,t)`这一距离概念随着我们所研究的内容而变化，当我们研究国家级别的距离中心性时，这里的距离是国家级别的路径长度；当我们研究大洲级别的距离中心性时，这里的距离是洲际路径的长度。地理路径相同的IP路径可能会有多条，如果我们对于地理路径相同的IP路径只选取一条进行研究，我们称之为普通的距离中心性。如果地理相同的IP路径按照其出现的次数进行计数，则我们称之为加权的距离中心性，因为每条地理路径被按照这条路径的流量频率进行了加权。
+												</p>
+												<table align="center"><tr>
+													<td>
+														<img src="img/Figure_19.png" style="margin-top:0px; margin-bottom:0px; width: 100%; height: 20%" align="middle" alt="" />
+														<h3 align="middle">距离中心性</h3>
+													</td>
+													<td>
+														<img src="img/Figure_20.png" style="margin-top:0px; margin-bottom:0px; width: 100%; height: 20%" align="middle" alt="" />
+														<h3 align="middle">加权距离中心性</h3>
+													</td>
+												</tr></table>
+												<p style="margin-bottom:0px">
+													上图展示了每个大洲的距离中心性。无论是否加权，北美洲都在远离网络中心。
+												</p>
+												<table align="center"><tr>
+													<td>
+														<img src="img/Figure_21.png" style="margin-top:0px; margin-bottom:0px; width: 100%; height: 20%" align="middle" alt="" />
+														<h3 align="middle">距离中心性</h3>
+													</td>
+													<td>
+														<img src="img/Figure_22.png" style="margin-top:0px; margin-bottom:0px; width: 100%; height: 20%" align="middle" alt="" />
+														<h3 align="middle">加权距离中心性</h3>
+													</td>
+												</tr></table>
+												<p style="margin-bottom:0px">
+													上图展示了距离中心性最低的四十个国家的距离中心性。在这里我们没有考虑路径数量较少的国家以避免测量偏差带来的影响。我们可以看出距离中心性在这几年没有明显的变化。
+												</p>
+												<div align="center">
+													<img src="img/table5.png" style="margin-top:0px; margin-bottom:0px; width: 50%; height: 50%" align="middle" alt="" />
+													<h3>距离中心性最低的十个国家</h3>
+													<img src="img/table6.png" style="margin-top:0px; margin-bottom:0px; width: 50%; height: 50%" align="middle" alt="" />
+													<h3>加权距离中心性最小的十个国家</h3>
+												</div>
+												<p style="margin-bottom:0px">
+													从上表可以发现，在非加权的距离中心性较小的国家中结果比较分散，而在加权的距离中心性较小的国家中，美国在三年的统计中都出现在了排行榜中。
+												</p>
+											</section>
+
+										</article>
+
+								</div>
+							</div>
+							
+
+							</div>
+						</div>
+					</div>
+				</section>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<div class="container">
+						
+
+						<!-- Copyright -->
+							<div id="copyright">
+								<ul class="menu">
+									<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								</ul>
+							</div>
+
+					</div>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/jquery.dropotron.min.js"></script>
+			<script src="../../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../../assets/js/browser.min.js"></script>
+			<script src="../../assets/js/breakpoints.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<script src="../../assets/js/main.js"></script>
+			<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script>
+
+	</body>
+</html>

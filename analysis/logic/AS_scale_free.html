@@ -1,0 +1,227 @@
+<!DOCTYPE HTML>
+<!--
+	TXT by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>AS拓扑的无标度性</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<div class="logo container">
+						<div>
+							<h1><a href="../../index.html" id="logo">ITRANCS: </a></h1>
+							<p>Internet Topology and Routing Analysis for National Cyber Security</p>
+						</div>
+					</div>
+				</header>
+
+
+			<!-- Nav -->
+				<nav id="nav">
+					<ul>
+						<li><a href="../../index.html">主页</a></li>
+						<li>
+							<a href="#">资源</a>
+							<ul>
+								<li><a href="../../resource/lg_resource.html">探针资源</a></li>
+								<li><a href="../../resource/data_resource.html">数据资源</a></li>
+								<li><a href="../../resource/geolocation_resource.html">地理定位资源</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">数据改进</a>
+							<ul>
+								<li><a href="../../improvement/routing_inference.html">全球互联网路由态势感知平台</a></li>
+							</ul>
+						</li>
+						<li class="current">
+							<a href="#">互联网拓扑路由分析</a>
+							<ul>
+								<li><a href="../logic_analysis.html">逻辑空间分析</a></li>
+								<li><a href="../geography_analysis.html">地理空间分析</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">工具</a>
+						</li>
+						<li>
+							<a href="#">关于</a>
+						</li>
+					</ul>
+				</nav>
+
+			<!-- Main -->
+				<section id="main">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="content">
+
+									<!-- Content -->
+
+										<article class="box page-content">
+
+											<header>
+												<h2>AS拓扑的无标度性</h2>
+												<ul class="meta">
+													<li class="icon fa-clock">2021-01-30</li>
+												</ul>
+											</header>
+
+											<section>
+												<p>
+													如果在一个拓扑中，节点的度的CCDF分布是符合幂律分布的，那么就意味着在这个网络中很少的节点具有较高的度，绝大多数的节点的度数都很少。这种特性又被称之为无标度性（scale-free）。如果网络具有这样的特性，那么就说明在网络中很少的节点具有很强的关键性，这种网络特性既体现在针对随机故障的鲁棒性，又体现在针对蓄意攻击的脆弱性。因此识别网络中的关键节点，并予以保护就变得格外重要。
+												</p>
+											</section>
+
+											<div class="col-12">
+
+												<!-- Features -->
+													<section class="box features">
+														<h2 class="major"><span>AS拓扑度分布（双log坐标轴）</span></h2>
+														<div>
+															<div class="row">
+																<div class="col-3 col-6-medium col-12-small">
+
+																	<!-- Feature -->
+																		<section class="box feature">
+																			<a class="image featured"><img src="img/Figure_1.png" alt="" /></a>
+																			<h3>无向图</h3>
+																			
+																		</section>
+
+																</div>
+																<div class="col-3 col-6-medium col-12-small">
+
+																	<!-- Feature -->
+																		<section class="box feature">
+																			<a class="image featured"><img src="img/Figure_2_in.png" alt="" /></a>
+																			<h3>有向图（入度）</h3>
+																			
+																		</section>
+
+																</div>
+																<div class="col-3 col-6-medium col-12-small">
+
+																	<!-- Feature -->
+																		<section class="box feature">
+																			<a class="image featured"><img src="img/Figure_3_out.png" alt="" /></a>
+																			<h3>有向图（出度）</h3>
+																			
+																		</section>
+
+																</div>
+																<div class="col-3 col-6-medium col-12-small">
+
+																	<!-- Feature -->
+																		<section class="box feature">
+																			<a class="image featured"><img src="img/Figure_4_out_peer.png" alt="" /></a>
+																			<h3>有向图（入度，考虑peer to peer关系）</h3>
+																			
+																		</section>
+
+																</div>
+																<div class="col-3 col-6-medium col-12-small">
+
+																	<!-- Feature -->
+																		<section class="box feature">
+																			<a class="image featured"><img src="img/Figure_5_in_peer.png" alt="" /></a>
+																			<h3>有向图（出度，考虑peer to peer关系）</h3>
+																			
+																		</section>
+
+																</div>
+																
+															</div>
+														</div>
+													</section>
+
+											</div>
+
+											<br>
+											<br>
+
+											<section>
+												<p style="margin-bottom:0px">
+													如图所示，展示了2019年1月AS拓扑的节点度的互补累计分布（Complementary Cumulative Distribution Function,CCDF）的双log坐标轴下的曲线。首先我们将AS拓扑作为一个无向图来进行研究，得到了无向图的AS拓扑各节点的度。接着考虑了AS之间的商业关系，将AS拓扑视为一张有向图，节点之间的链路方向是从provider到customer的方向，忽略peer to peer的关系。由于从无向图变为有向图，度也变成入度和出度两个概念，因此对AS有向图的入度和出度的CCDF分布分别做了分析。忽略peer to peer关系会导致拓扑信息的缺失，因此我们在有向图的基础上，考虑AS之间peer to peer的商业关系，将两个AS之间的peer to peer商业关系视为两个AS之间有两条互相指向的边，即两个AS之间存在一个环路，我们在这两种有向图的基础上对得到的AS有向拓扑图的入度、出度分布进行了分析。
+													我们使用<a href='#ref'>[1]</a>提出的方法来检验AS拓扑节点度分布是否符合幂律分布。这种方法认为一个幂律分布的模型是符合如下的模型的：
+												</p>
+												<div align="center"><img src="img/formula1.png" style="transform:scale(0.7)" alt="" /></div>
+												<p style="margin-bottom:0px">
+													其中`\alpha`是幂律分布的幂指数，`x_(min)`是数据中符合幂律分布的部分的最小的`x`。对于一组数据，检验其是否符合幂律分布的步骤如下：首先使用最大似然估计得到幂指数`\alpha`；其次通过Kolmogorov–Smirnov检验计算`x_(min)`，由此得到一个与原数据最适应的幂律分布模型；最后利用拟合优度检验将原数据与模型相对比，得到模型的置信度`p`-value，当`p`-value大于0.1时则认为原数据符合幂律分布。
+												</p>
+												<div align="center"><img src="img/table1.png" style="margin-top:0px; margin-bottom:0px; width: 50%; height: 50%" align="middle" alt="" /></div>
+												<p>
+													由表可知，AS拓扑只有考虑peer to peer关系的有向图的入度分布是不符合幂律分布，在其他情况下都是符合幂律分布的。而且在有向图中的出度的度分布最符合幂律分布。这一测量结果意味着AS拓扑图具有较强的无标度性，极少数的AS具有极强的重要性，如果这些关键的AS遭受攻击，可能会对全球的互联网通讯造成严重影响。
+												</p>
+											</section>
+
+											<section id='evolution'>
+												<h3>无标度性变化趋势分析</h3>
+												<p style="margin-bottom:0px">
+													我们发现AS拓扑的度分布是符合幂律分布的，但是AS拓扑是否在过去的几年中也保持这样的特性是一个疑问。随着时间的推移，AS拓扑的无标度性是否发生变化？变化的趋势是什么？带着这样的问题我们计算了从2016年到2019年的AS拓扑的度分布，以及通过最大似然估计、KS检验以及拟合优度检验的方法得到度分布与幂律分布模型之间的置信程度，以及置信程度的演化趋势。同样的，由于AS拓扑中AS与AS之间存在着商业关系，单纯将AS拓扑当作一张无向图可能会忽略一些重要的因素。因此我们既研究了作为无向图的AS拓扑的度分布，也研究了作为有向图的AS拓扑的度分布，由于有向图每个结点的度分为入度和出度，因此我们分别考虑了有向图的出度的度分布情况以及有向图的入度的度分布情况。有向图的方向是从provider到customer，在这种情况下是不考虑peer to peer关系的，除此之外，我们将peer to peer关系视为两条方向相反的边，研究了在考虑peer to peer关系的情况下AS拓扑的度分布。
+												</p>
+												<div align="center"><img src="img/Figure_7.png" style="margin-top:0px; margin-bottom:0px; width: 40%; height: 40%" align="middle" alt="" /></div>
+												<p>
+													如图所示，展示了AS拓扑的度分布幂律分布置信程度的演化趋势，当置信程度大于0.1时认为AS拓扑的度分布是符合幂律分布的，可以看到从2016年到2020年AS拓扑从无向图、有向图的入度、有向图的出度、考虑peer to peer关系的有向图出度的度分布一直都是符合幂律分布的。而考虑peer to peer关系的有向图的入度的度分布与幂律分布模型的置信程度从2016年到2019年一直在下降。在2019年的考虑peer to peer关系的AS拓扑有向图的入度的度分布不符合幂律分布。而考虑peer to peer关系的有向图的出度的度分布在2019年也有所下降，不考虑peer to peer关系的AS拓扑有向图的入度和出度度分布与幂律分布模型的置信程度在这五年里都很稳定，而无向图的度分布与幂律分布模型的置信程度从2016年到2020年处于波动的状态。
+												</p>
+											</section>
+
+											<section>
+												<h3 id="ref">参考文献</h3>
+												<p>
+													[1] Aaron Clauset, Cosma Rohilla Shalizi, and Mark EJ Newman. Power-law distributions in empirical data. SIAM review, 51(4):661–703, 2009.
+
+												</p>
+											</section>
+
+
+										</article>
+
+								</div>
+							</div>
+							
+
+							</div>
+						</div>
+					</div>
+				</section>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<div class="container">
+						
+
+						<!-- Copyright -->
+							<div id="copyright">
+								<ul class="menu">
+									<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								</ul>
+							</div>
+
+					</div>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/jquery.dropotron.min.js"></script>
+			<script src="../../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../../assets/js/browser.min.js"></script>
+			<script src="../../assets/js/breakpoints.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<script src="../../assets/js/main.js"></script>
+			<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script>
+
+	</body>
+</html>

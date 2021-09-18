@@ -1,0 +1,143 @@
+<!DOCTYPE HTML>
+<!--
+	TXT by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>AS节点中介中心性</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<div class="logo container">
+						<div>
+							<h1><a href="../../index.html" id="logo">ITRANCS: </a></h1>
+							<p>Internet Topology and Routing Analysis for National Cyber Security</p>
+						</div>
+					</div>
+				</header>
+
+
+			<!-- Nav -->
+				<nav id="nav">
+					<ul>
+						<li><a href="../../index.html">主页</a></li>
+						<li>
+							<a href="#">资源</a>
+							<ul>
+								<li><a href="../../resource/lg_resource.html">探针资源</a></li>
+								<li><a href="../../resource/data_resource.html">数据资源</a></li>
+								<li><a href="../../resource/geolocation_resource.html">地理定位资源</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">数据改进</a>
+							<ul>
+								<li><a href="../../improvement/routing_inference.html">全球互联网路由态势感知平台</a></li>
+							</ul>
+						</li>
+						<li class="current">
+							<a href="#">互联网拓扑路由分析</a>
+							<ul>
+								<li><a href="../logic_analysis.html">逻辑空间分析</a></li>
+								<li><a href="../geography_analysis.html">地理空间分析</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">工具</a>
+						</li>
+						<li>
+							<a href="#">关于</a>
+						</li>
+					</ul>
+				</nav>
+
+			<!-- Main -->
+				<section id="main">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="content">
+
+									<!-- Content -->
+
+										<article class="box page-content">
+
+											<header>
+												<h2>AS节点中介中心性</h2>
+												<ul class="meta">
+													<li class="icon fa-clock">2021-02-01</li>
+												</ul>
+											</header>
+
+											<section>
+												<p style="margin-bottom:0px">
+													中介中心性衡量的是一个节点承载的路由的数量。一个节点`v_(i)`的中介中心性`C_(b)(v_(i))`可以通过以下的公式得到：
+												</p>
+												<div align="center"><img src="img/formula6.png" style="margin-top:0px; margin-bottom:0px; width: 20%; height: 28%" align="middle" alt="" /></div>
+												<p style="margin-bottom:0px">
+													其中`P`代表了路由路径的总数，`V`代表节点的集合，`p_(uw)(v_(i))`代表从节点`u`出发经过节点`v_(i)`到达节点`w`的路径，链路的中介中心性的计算与之类似。
+												</p>
+												<div align="center"><img src="img/Figure_28.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" /></div>
+												<div align="center"><img src="img/Figure_29.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" /></div>
+												<p style="margin-bottom:0px">
+													我们利用routeviews和RIPE RIS的路由数据以及利用路由估算算法推测的路由数据计算AS拓扑各个节点的中介中心性。上图展示2019年1月AS拓扑各节点的中介中心性及其CDF分布，AS级别的节点中介中心性也遵循着极少数的节点具有极高的中介中心性的特点，约有0.15%的节点的中介中心性大于0.0044。
+												</p>
+												<div align="center"><img src="img/table6.png" style="margin-top:0px; margin-bottom:0px; width: 50%; height: 50%" align="middle" alt="" /></div>
+												<p style="margin-bottom:0px">
+													上表展示了中介中心性最高的十个AS，全球绝大多数的互联网流量都穿越这些AS，因此可以看作是全球互联网的关键节点。中介中心性最高的前100个AS中覆盖了100%的Tier-1的AS。在中介中心性最高的前100个AS中29个属于美国、9个属于俄罗斯、5个属于澳大利亚、4个属于英国、4个属于中国、3个属于德国、3个属于韩国。
+												</p>
+												<div align="center"><img src="img/table7.png" style="margin-top:0px; margin-bottom:0px; width: 50%; height: 50%" align="middle" alt="" /></div>
+												<p>
+													同样的，我们根据路由数据，对AS间的链路也进行了中介中心性的计算，计算的方法与节点的中介中心性类似，上表展示了中介中心性最高的10个AS链路。
+												</p>
+
+											</section>
+
+										</article>
+
+								</div>
+							</div>
+							
+
+							</div>
+						</div>
+					</div>
+				</section>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<div class="container">
+						
+
+						<!-- Copyright -->
+							<div id="copyright">
+								<ul class="menu">
+									<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								</ul>
+							</div>
+
+					</div>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/jquery.dropotron.min.js"></script>
+			<script src="../../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../../assets/js/browser.min.js"></script>
+			<script src="../../assets/js/breakpoints.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<script src="../../assets/js/main.js"></script>
+			<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script>
+
+	</body>
+</html>

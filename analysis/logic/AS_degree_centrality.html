@@ -1,0 +1,253 @@
+<!DOCTYPE HTML>
+<!--
+	TXT by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>AS拓扑节点度中心性</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<div class="logo container">
+						<div>
+							<h1><a href="../../index.html" id="logo">ITRANCS: </a></h1>
+							<p>Internet Topology and Routing Analysis for National Cyber Security</p>
+						</div>
+					</div>
+				</header>
+
+
+			<!-- Nav -->
+				<nav id="nav">
+					<ul>
+						<li><a href="../../index.html">主页</a></li>
+						<li>
+							<a href="#">资源</a>
+							<ul>
+								<li><a href="../../resource/lg_resource.html">探针资源</a></li>
+								<li><a href="../../resource/data_resource.html">数据资源</a></li>
+								<li><a href="../../resource/geolocation_resource.html">地理定位资源</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">数据改进</a>
+							<ul>
+								<li><a href="../../improvement/routing_inference.html">全球互联网路由态势感知平台</a></li>
+							</ul>
+						</li>
+						<li class="current">
+							<a href="#">互联网拓扑路由分析</a>
+							<ul>
+								<li><a href="../logic_analysis.html">逻辑空间分析</a></li>
+								<li><a href="../geography_analysis.html">地理空间分析</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">工具</a>
+						</li>
+						<li>
+							<a href="#">关于</a>
+						</li>
+					</ul>
+				</nav>
+
+			<!-- Main -->
+				<section id="main">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="content">
+
+									<!-- Content -->
+
+										<article class="box page-content">
+
+											<header>
+												<h2>AS拓扑节点度中心性</h2>
+												<ul class="meta">
+													<li class="icon fa-clock">2021-02-01</li>
+												</ul>
+											</header>
+
+											<section>
+												<p style="margin-bottom:0px">
+													度中心性是刻画节点关键程度的最直接的度量指标，它衡量的是一个节点与所有其它节点相联系的程度，也就是这个节点的度数大小，具有较大度中心性的节点意味着这个节点的邻居很多。一个节点`v_(i)`的度中心性`C_(d)(v_(i))`可以通过以下的公式得到：
+												</p>
+												<div align="center"><img src="img/formula3.png" style="transform:scale(0.7)" alt="" /></div>
+												<p>其中`d_(i)`代表节点`v_(i)`的度数，`v`代表节点的总数</p>
+											</section>
+
+											<div class="col-12">
+
+												<!-- Features -->
+													<section class="box features">
+														<h2 class="major"><span>AS拓扑各节点的度中心性及其CDF分布</span></h2>
+														<div>
+															<div class="row">
+																<div class="col-3 col-6-medium col-12-small">
+
+																	<!-- Feature -->
+																		<section class="box feature">
+																			<a class="image featured"><img src="img/Figure_12.png" alt="" /></a>
+																			<h3>无向图度中心性</h3>
+																			
+																		</section>
+
+																</div>
+																<div class="col-3 col-6-medium col-12-small">
+
+																	<!-- Feature -->
+																		<section class="box feature">
+																			<a class="image featured"><img src="img/Figure_13.png" alt="" /></a>
+																			<h3>无向图度中心性CDF分布</h3>
+																			
+																		</section>
+
+																</div>
+																<div class="col-3 col-6-medium col-12-small">
+
+																	<!-- Feature -->
+																		<section class="box feature">
+																			<a class="image featured"><img src="img/Figure_14.png" alt="" /></a>
+																			<h3>有向图（入度）度中心性</h3>
+																			
+																		</section>
+
+																</div>
+																<div class="col-3 col-6-medium col-12-small">
+
+																	<!-- Feature -->
+																		<section class="box feature">
+																			<a class="image featured"><img src="img/Figure_15.png" alt="" /></a>
+																			<h3>有向图（入度）度中心性CDF分布</h3>
+																			
+																		</section>
+
+																</div>
+																<div class="col-3 col-6-medium col-12-small">
+
+																	<!-- Feature -->
+																		<section class="box feature">
+																			<a class="image featured"><img src="img/Figure_16.png" alt="" /></a>
+																			<h3>有向图（出度）度中心性</h3>
+																			
+																		</section>
+
+																</div>
+																<div class="col-3 col-6-medium col-12-small">
+
+																	<!-- Feature -->
+																		<section class="box feature">
+																			<a class="image featured"><img src="img/Figure_17.png" alt="" /></a>
+																			<h3>有向图（出度）度中心性CDF分布</h3>
+																			
+																		</section>
+
+																</div>
+																<div class="col-3 col-6-medium col-12-small">
+
+																	<!-- Feature -->
+																		<section class="box feature">
+																			<a class="image featured"><img src="img/Figure_18.png" alt="" /></a>
+																			<h3>有向图（入度，考虑peer to peer关系）度中心性</h3>
+																			
+																		</section>
+
+																</div>
+																<div class="col-3 col-6-medium col-12-small">
+
+																	<!-- Feature -->
+																		<section class="box feature">
+																			<a class="image featured"><img src="img/Figure_19.png" alt="" /></a>
+																			<h3>有向图（入度，考虑peer to peer关系）度中心性CDF分布</h3>
+																			
+																		</section>
+
+																</div>
+																<div class="col-3 col-6-medium col-12-small">
+
+																	<!-- Feature -->
+																		<section class="box feature">
+																			<a class="image featured"><img src="img/Figure_20.png" alt="" /></a>
+																			<h3>有向图（出度，考虑peer to peer关系）度中心性</h3>
+																			
+																		</section>
+
+																</div>
+																<div class="col-3 col-6-medium col-12-small">
+
+																	<!-- Feature -->
+																		<section class="box feature">
+																			<a class="image featured"><img src="img/Figure_21.png" alt="" /></a>
+																			<h3>有向图（出度，考虑peer to peer关系）度中心性CDF分布</h3>
+																			
+																		</section>
+
+																</div>
+																
+															</div>
+														</div>
+													</section>
+
+											</div>
+											<br>
+
+											<section>
+												<p style="margin-bottom:0px">
+													上图展示了2019年1月AS拓扑各节点的度中心性及其CDF分布，由于AS之间具有商业关系，我们将AS分为无向图和有向图，有向图分为考虑peer to peer关系的有向图和不考虑peer to peer关系的有向图，有向图中的度分为入度和出度。从度中心性的CDF分布可以看出，无论是哪种AS度分布中心性，绝大多数的AS都具有很小的度中心性，极少的AS具有极大的度中心性。在无向图的AS拓扑各节点度中心性及其CDF分布中，仅有2.0%的节点的度中心性超过了0.0027；在有向图的AS拓扑各节点入度的中心性及其CDF分布中，仅有2.3%的节点的入度的中心性超过了0.0000084；在有向图的AS拓扑各节点出度的中心性及其CDF分布中，仅有0.3%的节点的出度的中心性超过了0.002；在考虑peer to peer关系的有向图的AS拓扑各节点入度的中心性及其CDF分布中，仅有2.3%的节点的入度的中心性超过了0.002；在考虑peer to peer关系的有向图的AS拓扑各节点出度的中心性及其CDF分布中，仅有2.0%的节点的出度的中心性超过了0.0022。
+												</p>
+												<div align="center"><img src="img/table3.png" style="margin-top:0px; margin-bottom:0px; width: 50%; height: 50%" align="middle" alt="" /></div>
+												<p>
+													上表展示了度中心性的AS排名中前十的AS，为了简便起见，采取的是AS有向图中出度的中心性作为代表。在度中心性最高的前100个AS中，覆盖了93.75$\%$的Tier-1的AS，在度中心性最高的100个AS中，有26个属于美国、9个属于俄罗斯、4个属于德国、4个属于印度、4个属于英国、4个属于印度、3个属于意大利、3个属于中国、2个属于韩国。
+												
+											</section>
+
+
+										</article>
+
+								</div>
+							</div>
+							
+
+							</div>
+						</div>
+					</div>
+				</section>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<div class="container">
+						
+
+						<!-- Copyright -->
+							<div id="copyright">
+								<ul class="menu">
+									<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								</ul>
+							</div>
+
+					</div>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/jquery.dropotron.min.js"></script>
+			<script src="../../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../../assets/js/browser.min.js"></script>
+			<script src="../../assets/js/breakpoints.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<script src="../../assets/js/main.js"></script>
+			<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script>
+
+	</body>
+</html>

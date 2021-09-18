@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<!--
+	TXT by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>流量加权的AS节点中介中心性</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<div class="logo container">
+						<div>
+							<h1><a href="../../index.html" id="logo">ITRANCS: </a></h1>
+							<p>Internet Topology and Routing Analysis for National Cyber Security</p>
+						</div>
+					</div>
+				</header>
+
+
+			<!-- Nav -->
+				<nav id="nav">
+					<ul>
+						<li><a href="../../index.html">主页</a></li>
+						<li>
+							<a href="#">资源</a>
+							<ul>
+								<li><a href="../../resource/lg_resource.html">探针资源</a></li>
+								<li><a href="../../resource/data_resource.html">数据资源</a></li>
+								<li><a href="../../resource/geolocation_resource.html">地理定位资源</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">数据改进</a>
+							<ul>
+								<li><a href="../../improvement/routing_inference.html">全球互联网路由态势感知平台</a></li>
+							</ul>
+						</li>
+						<li class="current">
+							<a href="#">互联网拓扑路由分析</a>
+							<ul>
+								<li><a href="../logic_analysis.html">逻辑空间分析</a></li>
+								<li><a href="../geography_analysis.html">地理空间分析</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">工具</a>
+						</li>
+						<li>
+							<a href="#">关于</a>
+						</li>
+					</ul>
+				</nav>
+
+			<!-- Main -->
+				<section id="main">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="content">
+
+									<!-- Content -->
+
+										<article class="box page-content">
+
+											<header>
+												<h2>流量加权的AS节点中介中心性</h2>
+												<ul class="meta">
+													<li class="icon fa-clock">2021-02-03</li>
+												</ul>
+											</header>
+
+											<section>
+												<p style="margin-bottom:0px">
+													尽管基于路由的分析考虑到了互联网中流量传输的真实路由情况，但是将任意两个节点之间的路由都视为相同的存在，忽略了每条路由上承载的流量大小，结果会有所偏差。因此，我们在基于路由的分析基础上，对每条路由承载的流量进行模拟，基于流量对互联网中的关键节点和关键链路进行识别。由于路由器级别的拓扑规模过大以及计算力的限制，我们只针对AS级别的拓扑进行基于流量的分析研究。
+													我们从两个角度对一条路由上承载的流量大小进行估计：一是起始AS所拥有的IP地址的数量，二是终点AS托管热门网站内容的数量。起始AS是流量产生的源头，如果起始AS所拥有的IP地址越多，代表从这个AS产生的流量越多。终点AS代表流量的访问目的，如果越多的热门网站的内容托管在一个AS中，那么访问这个AS的流量就越多。我们使用起始AS的IP地址数量与终点AS的热门网站内容托管的数量，对路由进行加权，在加权的基础上对各个AS的中介中心性进行分析，识别互联网中的关键节点和关键链路。一个AS`N`的关键程度`T-Criticality(N)`可以用下面的公式计算(`T-Criticality`代表Traffic-based Criticality)：
+												</p>
+												<div align="center"><img src="img/formula7.png" style="margin-top:0px; margin-bottom:0px; width: 50%; height: 50%" align="middle" alt="" /></div>
+												<p style="margin-bottom:0px">
+													其中`P`代表了路由路径的总数，`V`代表AS的集合，`p_(uw)(N)`代表从AS `u`出发经过AS `N`到达AS `w`的路径，`IP_(u)`代表起始AS `u`所拥有的IP地址的数量，`Host(w)`代表了终点AS `w`托管的热门网站的数量。
+													IP2Location的ASN数据库中提供了每个AS所拥有的IP地址的数量。Alexa是一个专注于全球网站排名的机构，其提供了实时的全球热门网站的排行榜。我们提取了Alexa的热门网站排行中前10000的网站进行研究。为了能够得到AS托管热门网站的内容数量，需要将热门网站的域名映射到IP地址，再从IP地址映射到相应的AS。
+													将热门网站的域名映射到IP地址需要借助域名解析系统DNS的帮助。但是由于近十年来CDN技术的发展，越来越多的热门网站的服务提供商将网站内容托管在全球各个位置的内容服务器中，目的是为了使得全球各地的用户在访问热门网站时，都可以就近获取所需内容，降低网络拥塞，提高用户访问响应速度和命中率。为了适应CDN部署的趋势，用户在访问热门网站时，DNS解析系统会返回与该用户相近的内容服务器的IP地址。因此热门网站内容在各个AS的托管情况取决于访问源的位置。随着访问源的变化，热门网站的内容托管的分布情况也会随之变化。
+
+												</p>
+												<div align="center"><img src="img/Figure_32.png" style="margin-top:0px; margin-bottom:0px; width: 50%; height: 50%" align="middle" alt="" /></div>
+												<p style="margin-bottom:0px">
+													如果使用公共DNS服务器，如Google DNS服务器和Open DNS服务器，进行域名解析，得到的IP地址是距离公共DNS服务器较近的内容服务器的IP地址。如上图所示，一个位于印度的客户想要通过一个位于新加坡的公共DNS服务器来获得一个域名的IP地址，公共DNS服务器会向存储该域名的域名解析数据的权威DNS服务器进行查询，由于公共DNS服务器位于新加坡，权威DNS服务器会返回与新加坡地理位置相近的内容服务器的IP地址。
+												</p>
+												<div align="center"><img src="img/Figure_33.png" style="margin-top:0px; margin-bottom:0px; width: 50%; height: 50%" align="middle" alt="" /></div>
+												<p style="margin-bottom:0px">
+													为了解决这一问题，DNS协议在1999年做了扩展，添加了EDNS0选项，其中的edns-client-subnet(ECS)可以设定访问源的子网IP，如上图所示，位于印度的客户在对公共DNS服务器进行查询时，设置ECS选项为自己所在的子网IP，公共服务器在向权威DNS服务器进行查询时也会携带这一选项，权威服务器会返回与这个选项中的子网IP地址相近的内容服务器的IP地址，也就是位于印度的内容服务器的地址。
+													因此，为了获得全球各个位置作为流量的源头，热门网站的内容托管情况的分布，我们从全球238个国家中分别选择各个国家的一个子网IP地址作为DNS查询时的ECS选项，利用Google的公共DNS服务器（8.8.8.8）对排名前10000的热门网站进行域名解析。最后将得到的各个国家为访问源的对应的IP地址列表映射到AS，就得到了以各个国家为访问源头，热门网站的内容在全球的托管情况。因此对于一个AS `N`的关键程度`T-Criticality(N)`的计算就修改为：
+												</p>
+												<div align="center"><img src="img/formula7.png" style="margin-top:0px; margin-bottom:0px; width: 50%; height: 50%" align="middle" alt="" /></div>
+												<p style="margin-bottom:0px">
+													其中`C`代表全球所有国家的集合，`IP_(u)(c)`代表AS `u`在国家`c`所拥有的IP地址的数量，`Host_(c)(w)`代表以国家`c`为访问源，在AS `w`托管的热门网站内容的数量。
+												</p>
+												<div align="center"><img src="img/table10.png" style="margin-top:0px; margin-bottom:0px; width: 50%; height: 50%" align="middle" alt="" /></div>
+												<p style="margin-bottom:0px">
+												上表展示了基于流量分析得到的关键程度最高的十个AS，可以看出，经过路由和流量模拟综合分析得到的结果已经能够非常准确的识别互联网中的关键节点。排名前列的AS都是全球的大型互联网服务提供者（Internet Service Provider,ISP），其中LEVEL3、TELIANET、COGENT、GTT、TATACOMM、BTN-ASN、NTT-COMMUNICATIONS是公认的全球范围的大型ISP，CHINANET-BACKBONE是中国的骨干网。
+												关键程度最高的前100个AS中覆盖了93.75%的Tier-1的AS，在关键程度最高的前100个AS中，28个属于美国、10个属于中国、6个属于英国、3个属于德国、3个属于韩国、3个属于印度、3个属于俄罗斯、2个属于日本。
+												同样我们基于流量的分析，对AS之间的关键链路进行了识别和研究，AS之间的链路的关键程度的定义与关键节点的定义类似，AS `N_(1)`和AS `N_(2)`之间的链路`(N_(1),N_(2))`的关键程度`T-Criticality(N_(1),N_(2))`的计算公式为：
+												</p>
+												<div align="center"><img src="img/formula9.png" style="margin-top:0px; margin-bottom:0px; width: 50%; height: 50%" align="middle" alt="" /></div>
+												<p style="margin-bottom:0px">
+												其中`p_(uw)( N_(1),N_(2))`代表起始AS为`u`，终点AS为`w`，且穿越链路`(N_(1),N_(2))`的路由。
+												</p>
+												<div align="center"><img src="img/table11.png" style="margin-top:0px; margin-bottom:0px; width: 50%; height: 50%" align="middle" alt="" /></div>
+												<p style="margin-bottom:0px">
+													上表展示了基于流量分析得到的最关键的十个AS链路，可以看到除了Tier-1的大型ISP之间的连接外，Amazon公司以及Cloudflare公司的AS链路具有较高的关键程度，这意味着这些公司承载了很大的国际间流量。
+												</p>
+											</section>
+
+										</article>
+
+								</div>
+							</div>
+							
+
+							</div>
+						</div>
+					</div>
+				</section>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<div class="container">
+						
+
+						<!-- Copyright -->
+							<div id="copyright">
+								<ul class="menu">
+									<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								</ul>
+							</div>
+
+					</div>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/jquery.dropotron.min.js"></script>
+			<script src="../../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../../assets/js/browser.min.js"></script>
+			<script src="../../assets/js/breakpoints.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<script src="../../assets/js/main.js"></script>
+			<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script>
+
+	</body>
+</html>

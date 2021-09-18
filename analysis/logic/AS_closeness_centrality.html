@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<!--
+	TXT by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>AS拓扑节点接近中心性</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<div class="logo container">
+						<div>
+							<h1><a href="../../index.html" id="logo">ITRANCS: </a></h1>
+							<p>Internet Topology and Routing Analysis for National Cyber Security</p>
+						</div>
+					</div>
+				</header>
+
+
+			<!-- Nav -->
+				<nav id="nav">
+					<ul>
+						<li><a href="../../index.html">主页</a></li>
+						<li>
+							<a href="#">资源</a>
+							<ul>
+								<li><a href="../../resource/lg_resource.html">探针资源</a></li>
+								<li><a href="../../resource/data_resource.html">数据资源</a></li>
+								<li><a href="../../resource/geolocation_resource.html">地理定位资源</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">数据改进</a>
+							<ul>
+								<li><a href="../../improvement/routing_inference.html">全球互联网路由态势感知平台</a></li>
+							</ul>
+						</li>
+						<li class="current">
+							<a href="#">互联网拓扑路由分析</a>
+							<ul>
+								<li><a href="../logic_analysis.html">逻辑空间分析</a></li>
+								<li><a href="../geography_analysis.html">地理空间分析</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">工具</a>
+						</li>
+						<li>
+							<a href="#">关于</a>
+						</li>
+					</ul>
+				</nav>
+
+			<!-- Main -->
+				<section id="main">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="content">
+
+									<!-- Content -->
+
+										<article class="box page-content">
+
+											<header>
+												<h2>AS拓扑节点接近中心性</h2>
+												<ul class="meta">
+													<li class="icon fa-clock">2021-02-01</li>
+												</ul>
+											</header>
+
+											<section>
+												<p style="margin-bottom:0px">
+													接近中心性衡量的是一个节点到其他所有节点的接近程度，如果一个节点到其他所有节点的距离之和很小，那么这个节点的接近中心性就很大。接近中心性是节点到其他所有节点的最短路径的距离的平均值的倒数。节点`v_(i)`的接近中心性`C_(c)(v_(i))`可以通过以下的公式得到：
+												</p>
+												<div align="center"><img src="img/formula4.png" style="margin-top:0px; margin-bottom:0px; width: 20%; height: 28%" align="middle" alt="" /></div>
+												<p style="margin-bottom:0px">其中`d(v_(i),v_(j))`代表节点`v_(i)`到节点`v_(j)`的距离</p>
+												<div align="center"><img src="img/Figure_24.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" /></div>
+												<div align="center"><img src="img/Figure_25.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" /></div>
+												<p>
+													上图展示2019年1月AS拓扑各节点的接近中心性及其CDF分布，绝大多数的节点的接近中心性都在一个稳定的区间，约有95.5%的节点的接近中心性在0.20到0.345之间。
+												</p>
+												<div align="center"><img src="img/table4.png" style="margin-top:0px; margin-bottom:0px; width: 50%; height: 50%" align="middle" alt="" /></div>
+												<p>
+													上表展示了接近中心性的AS排名中前十的AS，在接近中心性最高的前100个AS中，覆盖了50%的Tier-1的AS，在接近中心性最高的前100个AS中，有29个属于美国、6个属于俄罗斯、5个属于英国、5个属于意大利、5个属于法国、4个属于中国、3个属于澳大利亚、3个属于德国、1个属于日本。
+												</p>
+
+											</section>
+
+										</article>
+
+								</div>
+							</div>
+							
+
+							</div>
+						</div>
+					</div>
+				</section>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<div class="container">
+						
+
+						<!-- Copyright -->
+							<div id="copyright">
+								<ul class="menu">
+									<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								</ul>
+							</div>
+
+					</div>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/jquery.dropotron.min.js"></script>
+			<script src="../../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../../assets/js/browser.min.js"></script>
+			<script src="../../assets/js/breakpoints.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<script src="../../assets/js/main.js"></script>
+			<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script>
+
+	</body>
+</html>

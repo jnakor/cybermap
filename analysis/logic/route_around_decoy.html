@@ -1,0 +1,301 @@
+<!DOCTYPE HTML>
+<!--
+	TXT by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>路由绕避影响</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<div class="logo container">
+						<div>
+							<h1><a href="../../index.html" id="logo">ITRANCS: </a></h1>
+							<p>Internet Topology and Routing Analysis for National Cyber Security</p>
+						</div>
+					</div>
+				</header>
+
+
+			<!-- Nav -->
+				<nav id="nav">
+					<ul>
+						<li><a href="../../index.html">主页</a></li>
+						<li>
+							<a href="#">资源</a>
+							<ul>
+								<li><a href="../../resource/lg_resource.html">探针资源</a></li>
+								<li><a href="../../resource/data_resource.html">数据资源</a></li>
+								<li><a href="../../resource/geolocation_resource.html">地理定位资源</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">数据改进</a>
+							<ul>
+								<li><a href="../../improvement/routing_inference.html">全球互联网路由态势感知平台</a></li>
+							</ul>
+						</li>
+						<li class="current">
+							<a href="#">互联网拓扑路由分析</a>
+							<ul>
+								<li><a href="../logic_analysis.html">逻辑空间分析</a></li>
+								<li><a href="../geography_analysis.html">地理空间分析</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">工具</a>
+						</li>
+						<li>
+							<a href="#">关于</a>
+						</li>
+					</ul>
+				</nav>
+
+			<!-- Main -->
+				<section id="main">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="content">
+
+									<!-- Content -->
+
+										<article class="box page-content">
+
+											<header>
+												<h2>路由绕避影响</h2>
+												<ul class="meta">
+													<li class="icon fa-clock">2021-02-03</li>
+												</ul>
+											</header>
+
+											<section>
+												<p style="margin-bottom:0px">
+													我们考虑一种近几年来新兴的网络攻击——诱饵路由器（Decoy Router）<a href='#ref'>[1]</a>。这种攻击首先是针对中国的，为了突破中国的审查制度，攻击者在国际互联网中部署了一些诱饵路由器。攻击者为国内的客户提供服务，客户可以以此来突破审查制度的限制。如下图所示，客户可以选择一条经过诱饵路由器的流量，这个流量可以是访问非禁止的网站的流量。当流量穿越诱饵路由器时，诱饵路由器会作为代理，返回审查制度所禁止的网站内容。尽管检测到客户的流量访问一个非禁止的网站，但实际上客户可能突破设查制度的限制，访问禁止的网站内容。这对国家的网络安全造成严重影响。
+												</p>
+												<div align="center"><img src="img/Figure_34.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" /></div>
+												<p style="margin-bottom:0px">
+													同样的，这种攻击方法也可以作用在不具有审查制度的其他国家，如果诱饵路由器具有流量监听的功能，那么就会对威胁被攻击国家的网络安全。Schuchard等人提出抵御这种攻击的方法——路由绕行诱饵路由器（Routing around decoys,RAD）<a href='#ref'>[2]</a>。这种方法假设被攻击的国家或政府了解诱饵路由器在全球的部署情况，为了避免国内的流量途径诱饵路由器，对本国的网络安全造成威胁，国家政府会控制本国的AS改变路由策略，避免穿越国际互联网中部署了诱饵路由器的AS。但是为了避免国内流量穿越特定的AS，势必会影响本国网络与国际网络之间的连通性。因此本节中主要研究各个国家抵御类似的攻击，对本国网络的影响。本节的组织架构如下：首先介绍RAD来避免诱饵路由器的方法，其次通过研究各个国家使用RAD对本国网络的影响，得到每个国家抵御诱饵路由器攻击的能力。
+											</section>
+
+											<section>
+												<h3>路由绕避策略</h3>
+												<p style="margin-bottom:0px">
+													本小节介绍各个国家抵御诱饵路由器攻击的方法——路由绕行诱饵路由器（Routing Around Decoy router, RAD）。为了使得国内的流量避开部署了诱饵路由器的AS，必须对国内的AS的路由策略进行修改。在通常情况下，每个AS通过边界BGP路由器，从与它建立商业关系的邻居AS学习到达指定目的IP前缀的路由路径。如果有多个邻居就同一目的IP前缀向其宣告路由，那么这个AS就需要从这些路由中通过路由策略选择最合适的路径作为自身到达目的IP前缀的路由。AS在进行路由选择时，通常按照下面的顺序进行选择：
+												</p>
+												<ul style="margin-bottom:0px">
+													<li>满足valley-free规则的路径</li>
+													<li>preference更高的路径</li>
+													<li>最短的路径（shortest path）</li>
+													<li>打破束缚规则（Tie break）</li>
+												</ul>
+												<p style="margin-bottom:0px">
+													首先需要满足的是路径需要满足valley-free规则，即一条AS路径应当由0个或者数个customer to provider、0个或者1个peer to peer、0个或者数个provider to customer组成。之所以这一规则在路由选择时处于最高优先级，是因为一条不符合valley-free规则的路由是不可能从邻居节点宣告得到的，它违反了BGP路由中的出策略。<br>
+													第二个需要考虑的路由选择规则是preference规则。这条规则指的是相比于它的peer为其提供的路径，它更偏爱来自它customer为其提供的路径；相比于它的provider为其提供的路径，它更偏爱来自它peer为其提供的路径。之所以有这样的规则是因为AS之间本质上是商业关系，AS选择来自它的customer的路由，它无需为这条路由承载的流量进行付费。如果选择来自它的peer的路由，他在将流量交付给它的peer进行传输的同时，它同样需要帮助传输来自它的peer的流量。而如果选择来自它的provider的流量，那么他就需要为流量的传输而付费了。<br>
+													第三个规则是熟知的最短路径规则，如果满足前两个规则，AS就会在剩余的路径中选择最短的路径作为路由路径。当如果有多条最短路径剩余时，就会执行最后一条路由选择规则：打破束缚（Tie break），这一规则通常由各个AS自己指定，可能是选择下一条BGP路由器距离自己最近的路由。为了简便起见，在本研究的路由模拟中Tie break规则是选择下一条AS的AS号最小的路径。<br>
+													为了抵御诱饵路由器的攻击，被攻击的国家和政府必须修改其控制下的本国AS的路由策略，使其在路由的过程之中避免穿越部署了诱饵路由器的AS。因此，本国控制下的AS的路由策略就变为：
+												</p>
+												<ul style="margin-bottom:0px">
+													<li>选择不穿越部署了诱饵路由器的AS的路径</li>
+													<li>满足valley-free规则的路径</li>
+													<li>preference更高的路径</li>
+													<li>最短的路径（shortest path）</li>
+													<li>打破束缚规则（Tie break）</li>
+												</ul>
+												<p style="margin-bottom:0px">
+													在路由选择策略的第一项添加了选择不穿越部署了诱饵路由器的AS的路径这一规则。因此对于本国控制下的AS如果到达某一目的IP前缀需要穿越部署了诱饵路由器的AS，那么就需要按照新的路由策略进行重路由，从它的邻居宣告的路由中学习新的到达目的IP前缀的路由。我们所研究的就是重路由前后的路由变化。设在重路由之前的路由集合为`R`，包含了每个起始AS ` srcAS`、终点AS `desAS`对的路由路径`P(srcAS,desAS)`。其中起始AS属于被攻击的国家所控制的AS的总集合，终点AS属于被攻击的国家所控制的AS外的其他AS的集合。重路由后的路由集合为`R'`。<br>
+													我们按照影响从大到小的顺序研究重路由后的路由的数量。收到影响的最大的路由就是在重路由之后消失了的路由，也就是说某个AS在RAD之后无法到达某一目的AS；除此之外，由于我们要研究的是对整个国家的影响，因此我们会将一个国家所拥有的AS看成一个整体，去研究一个国家的所有AS在RAD之后会与全球的哪些AS失去联系。影响次之的就是需要通过修改商业关系才能到达目的AS的路由，修改商业关系会对起始AS造成严重影响，他需要重新和其他AS签订新的商业关系，制定新的路由策略，而且这一举措还可能会影响这个AS的其他路由情况，因此，收到这样影响的路由严重程度仅次于连通断开。影响程度第三的是需要通过选择更低偏好值的路由进行传输的路由；选择更低偏好值的路由意味着起始AS要为这条路由上的流量传输承担更高的价格。影响程度较小的情况是重路由之后AS路径变长了，但是值得注意的是，尽管重路由之后AS路径变长了，但这并不意味着在路由上承载的流量的代价就一定增加，而且起始AS无需为路径变长的流量承担更多的代价。除此之外，一些边缘的AS需要转变成传输AS以传输重路由之后的流量，由于边缘AS本身不具有传输功能，如果需要这些AS来传输流量，可能需要在这些AS中部署新的基础设施，这是需要一定的代价的。还有的AS重路由之后的流量与重路由之前相比增加了很多倍，流量的增加意味着AS需要支付更多的代价来传输流量。
+												</p>
+
+											</section>
+
+											<section>
+												<h3>路由绕避影响</h3>
+												<h5>连通性减少</h5>
+												<p style="margin-bottom:0px">
+													我们首先研究的是重路由之后，有哪些路由消失了，路由消失指的是源AS无法通过任何一个邻居的路由到达某个终点AS，我们计算消失的路由占重路由前全部路由的百分比。其次我们研究将中国控制的AS看作是一个整体，有哪些国外的AS无法与国内的任何一个AS连通了。下图展示了RAD对中国网络连通性的影响，可以看出当诱饵路由器在全球约10%的AS部署时，约有17.5%的路由消失了，中国国内的AS与全球约14%的AS无法连通。
+												</p>
+												<div align="center"><img src="img/Figure_35.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" /></div>
+												<div align="center"><img src="img/Figure_36.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" /></div>
+												<h5>违反valley-free规则</h5>
+												<p style="margin-bottom:0px">
+													重路由后有一部分的路由虽然还可以连通，但是却违反了valley-free规则。这对路由的影响仅次于无法连通，因为违反valley-free规则的路由是不应该存在的，因为邻居AS不会将这个路由宣告出来，违反了BGP路由的出策略。而如果想要通过违反valley-free规则的路由传输流量，就必须修改AS之间的商业关系，而修改商业关系的代价对AS的影响仅次于无法连通的代价。下图展示了重路由之后违反valley-free规则的路由占重路由前全部路由的百分比，当诱饵路由器在全球约10%的AS部署时，约有4%的路由违反了valley-free规则。
+												</p>
+												<div align="center"><img src="img/Figure_37.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" /></div>
+												<h5>选择less-preferred的路由</h5>
+												<p style="margin-bottom:0px">
+													重路由后虽然有一些路由满足valley-free规则，但是相比于源路由，新的路由选择了less-preferred的路由，原本可以通过customer来传输流量，重路由后只能通过peer或者provider来传输；原本可以通过peer来传输，重路由后只能通过provider来传输。这意味着AS需要支付更多的价钱来传输流量。下图展示了重路由之后选择less-preferred的路由占重路由前全部路由的百分比，当诱饵路由器在全球约10%的AS部署时，约有3.5%的路由选择less-preferred的路由。
+												</p>
+												<div align="center"><img src="img/Figure_38.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" /></div>
+												<h5>路径长度增加</h5>
+												<p style="margin-bottom:0px">
+													接下来研究的是有哪些路由在重路由之后的路径相比源路由路径增加了。下图展示了重路由之后路径变长的路由占重路由前全部路由的百分比，当诱饵路由器在全球约10%的AS部署时，约有6%的路由的路径变长了。
+												</p>
+												<div align="center"><img src="img/Figure_39.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" /></div>
+												<h5>边缘AS转变成传输AS</h5>
+												<p style="margin-bottom:0px">
+													在重路由之后有很多在原来作为边缘的AS在重路由之后变为传输的AS。原本这些AS不具备传输的功能，而在重路由之后，需要这些AS传输流量，这意味着需要在这些AS中部署新的基础设施，这一改变会带来不小的代价。下图展示了重路由前作为边缘的AS，在重路由后转化成传输AS的数量占重路由前边缘的AS的比例，当诱饵路由器在全球约10%的AS部署时，约有80%的边缘AS转变成了传输AS。
+												</p>
+												<div align="center"><img src="img/Figure_40.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" /></div>
+												<h5>流量激增</h5>
+												<p style="margin-bottom:0px">
+													在重路由之后，有一些传输AS的流量与重路由前相比增加了数千倍，这对传输AS带来极大的流量传输代价。下表展示了重路由前后流量激增最高的AS，重路由后的流量与原来传输的流量的倍数，当诱饵路由器在全球约6%的AS部署时，流量激增程度最高的AS的流量是原来的3389.82倍。
+												</p>
+												<div align="center"><img src="img/table12.png" style="margin-top:0px; width: 50%; height: 50%" align="middle" alt="" /></div>
+											</section>
+
+											<section id='evolution'>
+												<h3>路由绕避影响的演化趋势</h3>
+												<p style="margin-bottom:0px">
+													在本节中，我们结合历史路由数据，研究在非国家对抗以及国家对抗两种情况下，采取路由绕避策略对中国互联网的影响的演化趋势。
+												</p>
+												<h5>全世界范围部署下路由绕避影响的演化趋势</h5>
+												<p style="margin-bottom:0px">
+													首先，我们研究在非国家对抗的情况下，中国的路由绕避对自身互联网的影响。我们还是以诱饵路由器这个场景进行研究。在非国家对抗的情况下，诱饵路由器会在全球互联网随机部署。在发生诱饵路由器攻击之后，中国的AS为了绕避部署了诱饵路由器的AS，会进行重路由，重路由之后的路由会受到不同程度的影响，我们将影响按照从大到小的顺序进行排列，从大到小分别是连通性减少、需要通过修改商业关系进行路由、选择偏好值较低的路由、路径长度增加、边缘AS转变为传输AS这几个部分。
+												</p>
+												<div align="center">
+													<img src="img/Figure_56.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" />
+													<h3>非国家对抗情况下无法连通的路由</h3>
+												</div>
+												<div align="center">
+													<img src="img/Figure_57.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" />
+													<h3>非国家对抗情况下无法到达的AS</h3>
+												</div>
+												<p style="margin-bottom:0px">
+													如上图所示分别展示了在采取路由绕避策略之后无法连通的路由以及无法到达的AS，可以看出无法联通的路由数量比较稳定，在逐年轻微的增加；无法到达的AS的数量在逐年下降，2017-2019年呈现跳崖式的下降。
+												</p>
+												<div align="center">
+													<img src="img/Figure_58.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" />
+													<h3>非国家对抗情况下需要修改商业关系以连通的路由</h3>
+												</div>
+												<p style="margin-bottom:0px">
+													上图展示了在采取路由绕避策略之后需要通过修改商业关系才能连通的路由，可以看出需要修改商业关系来传输流量的路径在逐年减少，但是从2017到2019年却反常的增加了很多；这可能是由于2017到2019年无法到达的AS的数量减少，但是要到达这些AS需要修改商业关系。
+												</p>
+												<div align="center">
+													<img src="img/Figure_59.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" />
+													<h3>非国家对抗情况下选择低偏好值以连通的路由</h3>
+												</div>
+												<p style="margin-bottom:0px">
+													上图展示了在采取路由绕避策略之后需要选择低偏好值才能连通的路由，可以看出需要通过一个偏好值更低的AS来传输流量的路径在逐年升高，2017年-2019年升高的幅度很大，原因可能也是由于2017到2019年无法到达的AS的数量减少，但是要到达这些AS需要选择低偏好值进行路由导致的。
+												</p>
+												<div align="center">
+													<img src="img/Figure_60.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" />
+													<h3>非国家对抗情况下路径长度增加的路由</h3>
+												</div>
+												<p style="margin-bottom:0px">
+													上图展示了采取路由绕避策略之后路径长度增加的路由的数量的变化趋势，可以看出长度增加的路径数量相对稳定。
+												</p>
+												<div align="center">
+													<img src="img/Figure_61.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" />
+													<h3>非国家对抗情况下由边缘AS转变为传输AS的数量</h3>
+												</div>
+												<p style="margin-bottom:0px">
+													上图展示了采取路由绕避策略之后由边缘AS转变为传输AS的AS数量的变化趋势，可以看出转变为传输AS的边缘AS数量也在2017年到2019年出现了激增的情况，同样是由于为了到达更多的AS而导致的结果。<br>
+													在非国家对抗的情况下，总体来看，需要通过修改商业关系、选择更低偏好值的路由、转变为传输AS的边缘AS数量都在逐年增加，但是这是由于无法到达的AS数量减少导致的，为了能够到达这些AS，我们可以通过这些方式来连通。因此，在非国家对抗的情况下，诱饵路由器对中国的影响实际上是在逐年减小。
+												</p>
+												<h5>美国部署下路由绕避影响的演化趋势</h5>
+												<p style="margin-bottom:0px">
+													在研究完非国家对抗的情况下，路由绕避对中国的影响之后，我们下一步研究在国家对抗的情况下路由绕避对中国互联网的影响。我们考虑中美对抗这一场景。在这一对抗场景下，美国会在自己本国所控制的AS上部署诱饵路由器，中国的AS需要进行重路由以绕避部署了诱饵路由器的AS。
+												</p>
+												<div align="center">
+													<img src="img/Figure_62.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" />
+													<h3>国家对抗情况下无法连通的路由</h3>
+												</div>
+												<div align="center">
+													<img src="img/Figure_63.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" />
+													<h3>国家对抗情况下无法到达的AS</h3>
+												</div>
+												<p style="margin-bottom:0px">
+													上图所示分别展示了在国家对抗的情况下，在采取路由绕避策略之后无法连通的路由和无法到达的AS的演化趋势。可以看出，无法连通的路由的数量以及无法到达的AS数量都相对稳定。
+												</p>
+												<div align="center">
+													<img src="img/Figure_64.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" />
+													<h3>国家对抗情况下需要修改商业关系以连通的路由</h3>
+												</div>
+												<p style="margin-bottom:0px">
+													上图展示了在国家对抗的情况下，在采取路由绕避策略之后需要修改商业关系以连通的路由数量的演化趋势。可以看出需要通过变更商业关系来传输的路径数量在逐年增加。
+												</p>
+												<div align="center">
+													<img src="img/Figure_65.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" />
+													<h3>国家对抗情况下选择低偏好值以连通的路由</h3>
+												</div>
+												<p style="margin-bottom:0px">
+													上图展示了在国家对抗的情况下，在采取路由绕避策略之后选择低偏好值以连通的路由数量的演化趋势。可以看出选择低偏好值路径进行传输的路由的数量在逐年增加。
+												</p>
+												<div align="center">
+													<img src="img/Figure_66.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" />
+													<h3>国家对抗情况下路径长度增加的路由</h3>
+												</div>
+												<p style="margin-bottom:0px">
+													上图展示了在国家对抗的情况下，在采取路由绕避策略之后路径长度增加的路由数量的演化趋势。长度增加的路径的数量从2011到2013年减少后从2013年到2019年一直在增加。
+												</p>
+												<div align="center">
+													<img src="img/Figure_67.png" style="margin-top:0px; margin-bottom:0px; width: 30%; height: 30%" align="middle" alt="" />
+													<h3>国家对抗情况下由边缘AS转变为传输AS的数量</h3>
+												</div>
+												<p style="margin-bottom:0px">
+													上图展示了在国家对抗的情况下，在采取路由绕避策略之后由边缘AS转变为传输AS的数量的演化趋势。转变为传输AS的边缘AS数量在2017年到2019年出现了激增的情况。<br>
+													在国家对抗的情况下，需要通过修改商业关系、选择更低偏好值的路由、长度增加的路由、转变为传输AS的边缘AS数量都在逐年增加，而且无法到达的AS数量没有减少。因此，在国家对抗的情况下，在国家对抗的情况下，中国抵御美国的攻击的能力在逐年变差。
+												</p>
+
+
+											</section>
+
+
+											<section>
+												<h3 id="ref">参考文献</h3>
+												<p>
+													[1] Amir Houmansadr, Edmund L Wong, and Vitaly Shmatikov. No direction home: The true cost of routing around decoys. In NDSS, 2014.<br>
+													[2] Max Schuchard, John Geddes, Christopher Thompson, and Nicholas Hopper. Routing around decoys. In Proceedings of the 2012 ACM conference on Computer and communications security, pages 85–96, 2012.
+
+												</p>
+											</section>
+
+										</article>
+
+								</div>
+							</div>
+							
+
+							</div>
+						</div>
+					</div>
+				</section>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<div class="container">
+						
+
+						<!-- Copyright -->
+							<div id="copyright">
+								<ul class="menu">
+									<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								</ul>
+							</div>
+
+					</div>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/jquery.dropotron.min.js"></script>
+			<script src="../../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../../assets/js/browser.min.js"></script>
+			<script src="../../assets/js/breakpoints.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<script src="../../assets/js/main.js"></script>
+			<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script>
+
+	</body>
+</html>
