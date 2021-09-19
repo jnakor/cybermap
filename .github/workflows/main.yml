@@ -15,10 +15,10 @@ jobs:
 
     # 第二步：打包构建
     - name: Build
-      uses: actions/setup-node@master
-    - run: npm install # 安装第三方包
-    - run: npm run build # 打包
-    - run: tar -zcvf release.tgz .nuxt static nuxt.config.js package.json package-lock.json pm2.config.json
+    #   uses: actions/setup-node@master
+    # - run: npm install # 安装第三方包
+    # - run: npm run build # 打包
+    - run: tar -zcvf release.tgz *
       # 把.nuxt、nuxt.config.js等文件，打包压缩为release.tgz
 
     # 第三步：发布 Release
@@ -57,6 +57,6 @@ jobs:
           cd /root/cybermap
           wget https://github.com/BUPTNJ/cybermap/releases/latest/download/release.tgz -O release.tgz
           tar zxvf release.tgz
-          npm install --production
-          pm2 reload pm2.config.json
+          # npm install --production
+          # pm2 reload pm2.config.json
 
