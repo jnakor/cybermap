@@ -20,6 +20,21 @@
 </head>
 <script>
     var fixmenuDistance;
+    window.onresize = function() {
+        console.log(window.innerWidth);
+        if (window.innerWidth <= 800) {
+            document.getElementById("menutop").style.display = 'none';
+        } else {
+            document.getElementById("menutop").style.display = 'block';
+        }
+        if (window.innerWidth <= 870) {
+            document.getElementById("main-menu").style.display = 'none';
+        } else {
+            document.getElementById("main-menu").style.display = 'block';
+        }
+
+
+    }
     window.onload = function() {
         fixmenuDistance = document.getElementById('xxa').offsetTop + 20;
     }
@@ -28,9 +43,12 @@
         var currentDistance = document.documentElement.scrollTop;
         console.log(currentDistance, fixmenuDistance);
         // alert(currentDistance + " " + fixmenuDistance);
+
         if (currentDistance >= fixmenuDistance) {
             document.getElementById("fixmenu").style.position = 'fixed';
             document.getElementById("fixmenu").style.top = 0;
+
+
         } else {
             document.getElementById("fixmenu").style.position = 'relative';
         }
@@ -210,10 +228,10 @@
         <!-- Main -->
         <div class="container pt-2 pt-md-3 pb-3 pb-md-6">
 
-            <div class="row" id="xxa" style="margin-left: -40px;">
+            <div class="row" id="xxa">
                 <aside class="col-12 order-1 col-lg-3 col-xxl-wider mb-3" id="asidebar">
                     <div id='menutop' class="sticky-top sidebar">
-                        <div id="fixmenu" class="docs-menu">
+                        <div id="fixmenu" class="docs-menu" style="background-color: white; ">
 
                             <!-- Sidebar -->
 
@@ -259,7 +277,7 @@
                         </div>
                     </div>
                 </aside>
-                <div class="col-12 order-12 col-lg-9 col-xxl-narrow">
+                <div class="col-12 order-12 col-lg-9 col-xxl-narrow" style="padding-right: 5px;">
 
                     <div class="content">
 
