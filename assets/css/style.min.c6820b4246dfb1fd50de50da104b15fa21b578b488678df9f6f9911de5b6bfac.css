@@ -10779,7 +10779,9 @@ a.text-success:focus {
 }
 
 .text-info {
-    color: #17a2b8!important
+    /* color: #17a2b8!important
+     */
+    color: #990073;
 }
 
 a.text-info:hover,
