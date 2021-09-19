@@ -1,0 +1,20 @@
+#more-tb th {
+    font-weight: bold;
+    font-size: larger;
+    text-align: center;
+}
+
+#more-tb td {
+    text-align: left;
+    border: solid;
+    border-color: darkgray;
+}
+
+#more-tb td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+#more-tb td span p {
+    text-align: left;
+}

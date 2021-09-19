@@ -16,121 +16,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.min.c6820b4246dfb1fd50de50da104b15fa21b578b488678df9f6f9911de5b6bfac.css" />
     <link rel="stylesheet" href="assets/css/my.css" />
+    <link rel="stylesheet" href="assets/css/more.css" />
 
 </head>
 <script>
-    var fixmenuDistance;
-    window.onload = function() {
-        fixmenuDistance = document.getElementById('xxa').offsetTop + 20;
-    }
-
-    function menuScroll() {
-        var currentDistance = document.documentElement.scrollTop;
-        console.log(currentDistance, fixmenuDistance);
-        // alert(currentDistance + " " + fixmenuDistance);
-        if (currentDistance >= fixmenuDistance) {
-            document.getElementById("fixmenu").style.position = 'fixed';
-            document.getElementById("fixmenu").style.top = 0;
-        } else {
-            document.getElementById("fixmenu").style.position = 'relative';
-        }
-    }
-
-    function chsScroll() {
-        var currentDistance = document.documentElement.scrollTop;
-        // alert(currentDistance + " " + fixmenuDistance);
-        var idList = ["Part-A", "Part-B", "Part-C", "Part-D"];
-        var index;
-        for (index = 0; index < idList.length; index++) {
-            curId = idList[index];
-            nexId = idList[index + 1];
-            chsId = curId + "-chs";
-            if (document.getElementById(chsId) == undefined) continue;
-
-            var startOffset = document.getElementById(curId).offsetTop;
-            var endOffset;
-            if (index + 1 < idList.length) {
-                endOffset = document.getElementById(nexId).offsetTop;
-            } else {
-                endOffset = 0x7fffffff;
-            }
-            if (currentDistance >= startOffset && currentDistance < endOffset) {
-                document.getElementById(chsId).style.display = 'block';
-                // document.getElementById('href-' + curId).style.textDecoration = "underline";
-            } else {
-                document.getElementById(chsId).style.display = 'none';
-                // document.getElementById('href-' + curId).style.textDecoration = "none";
-
-            }
-
-        }
-    }
-
-    function underLineTarget() {
-        var currentDistance = document.documentElement.scrollTop;
-        var targetList = [
-            "Part-A",
-            "Part-A1",
-            'Part-A2',
-            'Part-B',
-            'Part-B1',
-            'Part-B2',
-            'Part-C',
-            'Part-C1',
-            'Part-C2',
-            'Part-D',
-            'Part-D1',
-            'Part-D2',
-            'Part-D3'
-        ]
-        var i;
-        for (i = 0; i < targetList.length; i++) {
-            var curId = targetList[i];
-            var nexId = targetList[i + 1];
-            var startOffset = document.getElementById(curId).offsetTop;
-            var endOffset;
-            if (i + 1 < targetList.length) {
-                endOffset = document.getElementById(nexId).offsetTop;
-            } else {
-                endOffset = 0x7fffffff;
-            }
-            if (currentDistance >= startOffset && currentDistance < endOffset) {
-                if (document.getElementById('href-' + curId).className.indexOf(' active') == -1) {
-                    document.getElementById('href-' + curId).className += " active";
-                }
-
-            } else {
-                document.getElementById('href-' + curId).className = document.getElementById('href-' + curId).className.replace(' active', '');
-            }
-        }
-    }
-
-
-    window.onscroll = function() {
-        menuScroll();
-        chsScroll();
-        underLineTarget();
-
-    }
-
-
-    function rollTo(target) {
-        window.location.hash = target;
-        alert(target);
-    }
-
-    function displayChs(btnGroup) {
-        if (btnGroup.children[1].className.indexOf(' show') == -1) {
-            btnGroup.children[1].className += ' show';
-        };
-
-    }
-
-    function hiddenChs(btnGroup) {
-        if (btnGroup.children[1].className.indexOf(' show') > 0) {
-            btnGroup.children[1].className = btnGroup.children[1].className.replace(' show', '');
-        };
-    }
 </script>
 
 <body>
@@ -217,26 +106,90 @@
         </header>
 
         <!-- Main -->
-        <div class="container pt-2 pt-md-3 pb-3 pb-md-6">
+        <div style="margin-top: 30px;">
+            <table id="more-tb">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th> Authors</th>
+                        <th>Vol</th>
+                        <th>Tags</th>
+                        <th>Publisher</th>
+                    </tr>
 
-            <div class="row" id="xxa">
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
 
-                <div class="col-12 order-12 col-lg-9 col-xxl-10">
+                            <span><h5> On Mapping the Interconnections in Today’s Internet</h5></span>
 
-                    <div class="content">
+                            <span>
+                                <p>&nbsp;&nbsp; Previously under-studied colocation facilities and the critical role they play in solving the notoriously difficult problem of obtaining a comprehensive view of the structure and evolution of the interconnections
+                                    in today’s Internet are the focus of this paper.</p>
+                            </span>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Reza Motamedi(Twitter)</li>
+                                <li>Bahador Yeganeh(University of Oregon)</li>
+                                <li>Balakrishnan Chandrasekaran(Max-Planck-Institüt für Informatik)</li>
+                                <li>Reza Rejaie(University of Oregon)</li>
+                                <li>Bruce M. Maggs(Duke University)</li>
+                                <li>Walter Willinger(NIKSUN)</li>
+                            </ul>
+                        </td>
+                        <td style="width: 150px;">
+                            <p>TON 2019</p>
+                        </td>
+                        <td style="width: 150px;">
+                            <ul>
+                                <li><a title="Measurement" class="result__link" href="/search?query=tag:measurement">[Measurement]</a></li>
 
-                        <!-- Content -->
-                        <article class="box page-content">
-                            <h4> Internete Measurements </h4>
-                            <h4> Distributed Systems </h4>
-                        </article>
+                            </ul>
+                        </td>
+                        <td style="width: 100px;">
+                            <p><a title="Research Conference on Communications, Information, and Internet Policy (TPRC)">IEEE</a></p>
+                        </td>
 
-                    </div>
-                </div>
+                    </tr>
+                    <tr>
+                        <td>
 
-            </div>
+                            <span><h5> TopoScope: Recover AS Relationships From Fragmentary Observations</h5></span>
+
+                            <span>
+                                <p>&nbsp;&nbsp; Introduction...................</p>
+                            </span>
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Zitong Jin(Tsinghua University)</li>
+                                <li>Xingang Shi(Tsinghua University)</li>
+                                <li>Yan Yang(Tsinghua University)</li>
+                                <li>Xia Yin(Tsinghua University)</li>
+                                <li>Zhiliang Wang(Tsinghua University)</li>
+                                <li>Jianping Wu (Tsinghua University)
+                                </li>
+                            </ul>
+                        </td>
+                        <td style="width: 150px;">
+                            <p>IMC2020</p>
+                        </td>
+                        <td style="width: 150px;">
+                            <ul>
+                                <li><a title="Measurement" class="result__link" href="/search?query=tag:measurement">[Measurement]</a></li>
+                            </ul>
+                        </td>
+                        <td style="width: 100px;">
+                            <p><a title="Research Conference on Communications, Information, and Internet Policy (TPRC)">ACM</a></p>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+            </table>
         </div>
-
         <!-- Footer -->
         <footer class="d-print-none">
             <div class="sub-footer ">
