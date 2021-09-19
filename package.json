@@ -1,0 +1,19 @@
+{
+  "name": "cybermap",
+  "version": "1.0.0",
+  "description": "Safari is not supported\r Chrome or Firefox is recommended",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BUPTNJ/cybermap.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BUPTNJ/cybermap/issues"
+  },
+  "homepage": "https://github.com/BUPTNJ/cybermap#readme"
+}
