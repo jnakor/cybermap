@@ -16,7 +16,7 @@ jobs:
     # 第二步：打包构建
     - name: Build
       uses: actions/setup-node@master
-    - run: tar -zcvf release.tgz * --exclude README.txt .github .gitignore LICENSE.txt
+    - run: tar -zcvf release.tgz * --exclude=README.txt --exclude=.github --exclude=.gitignore --exclude=LICENSE.txt
 
     # 第三步：发布 Release
     - name: Create Release # 创建Release，可以在仓库看到一个个版本
