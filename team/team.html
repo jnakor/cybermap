@@ -22,6 +22,24 @@
 </head>
 <script>
     var fixmenuDistance;
+    window.onresize = function() {
+        console.log(window.innerWidth);
+        if (window.innerWidth <= 800) {
+            document.getElementById("menutop").style.display = 'none';
+        } else {
+            document.getElementById("menutop").style.display = 'block';
+        }
+        if (window.innerWidth <= 870) {
+            document.getElementById("main-menu").style.display = 'none';
+        } else {
+            document.getElementById("main-menu").style.display = 'block';
+        }
+        // if (window.innerWidth <= 992) document.getElementById("fixmenu").style.width = '100%';
+        // else {
+        //     document.getElementById("fixmenu").style.width = '25%';
+        // }
+
+    }
     window.onload = function() {
         fixmenuDistance = document.getElementById('xxa').offsetTop + 20;
     }
@@ -31,6 +49,7 @@
         // alert(currentDistance + " " + fixmenuDistance);
         if (currentDistance >= fixmenuDistance) {
             document.getElementById("fixmenu").style.position = 'fixed';
+
             document.getElementById("fixmenu").style.top = 0;
         } else {
             document.getElementById("fixmenu").style.position = 'relative';
@@ -55,7 +74,6 @@
             } else {
                 endOffset = 0x7fffffff;
             }
-            console.log(currentDistance, startOffset);
             if (currentDistance >= startOffset && currentDistance < endOffset) {
                 if (document.getElementById('href-' + curId).className.indexOf(' active') == -1) {
                     document.getElementById('href-' + curId).className += " active";

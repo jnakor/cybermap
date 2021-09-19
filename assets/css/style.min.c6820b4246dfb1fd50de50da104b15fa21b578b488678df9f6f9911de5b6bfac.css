@@ -11523,8 +11523,8 @@ a.text-dark:focus {
         max-width: 16.66666667%
     }
     .col-lg-3 {
-        flex: 0 0 41.66666666%;
-        max-width: 41.66666666%
+        flex: 0 0 25%;
+        max-width: 25%
     }
     .col-lg-4 {
         flex: 0 0 33.33333333%;
@@ -11547,8 +11547,8 @@ a.text-dark:focus {
         max-width: 66.66666667%
     }
     .col-lg-9 {
-        flex: 0 0 75%;
-        max-width: 75%
+        flex: 0 0 70%;
+        max-width: 70%
     }
     .col-lg-10 {
         flex: 0 0 83.33333333%;
@@ -11811,8 +11811,8 @@ a.text-dark:focus {
         max-width: 18.66666667%
     }
     .col-xxl-wider {
-        flex: 0 0 22.66666667%;
-        max-width: 22.66666667%
+        flex: 0 0 25%;
+        max-width: 25%
     }
     .col-xxl-3 {
         flex: 0 0 25%;
@@ -11843,8 +11843,8 @@ a.text-dark:focus {
         max-width: 75%
     }
     .col-xxl-narrow {
-        flex: 0 0 77.33333333%;
-        max-width: 77.33333333%
+        flex: 0 0 75%;
+        max-width: 75%
     }
     .col-xxl-10 {
         flex: 0 0 81.33333333%;
