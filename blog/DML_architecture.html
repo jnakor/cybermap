@@ -1,0 +1,410 @@
+<!DOCTYPE HTML>
+<!--
+	TXT by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+    <title>CyberMap</title>
+    <link rel="icon" href="../images/logo_r.png" sizes="32x32">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/css/style.min.c6820b4246dfb1fd50de50da104b15fa21b578b488678df9f6f9911de5b6bfac.css" />
+    <link rel="stylesheet" href="../assets/css/my.css" />
+</head>
+
+<script>
+    var fixmenuDistance;
+    window.onload = function() {
+        fixmenuDistance = document.getElementById('xxa').offsetTop + 20;
+    }
+
+    function menuScroll() {
+        var currentDistance = document.documentElement.scrollTop;
+        console.log(currentDistance, fixmenuDistance);
+        // alert(currentDistance + " " + fixmenuDistance);
+        if (currentDistance >= fixmenuDistance) {
+            document.getElementById("fixmenu").style.position = 'fixed';
+            document.getElementById("fixmenu").style.top = 0;
+        } else {
+            document.getElementById("fixmenu").style.position = 'relative';
+        }
+    }
+
+    function chsScroll() {
+        var currentDistance = document.documentElement.scrollTop;
+        // alert(currentDistance + " " + fixmenuDistance);
+        var idList = ["Part-A", "Part-B", "Part-C", "Part-D"];
+        var index;
+        for (index = 0; index < idList.length; index++) {
+            curId = idList[index];
+            nexId = idList[index + 1];
+            chsId = curId + "-chs";
+            if (document.getElementById(chsId) == undefined) continue;
+
+            var startOffset = document.getElementById(curId).offsetTop;
+            var endOffset;
+            if (index + 1 < idList.length) {
+                endOffset = document.getElementById(nexId).offsetTop;
+            } else {
+                endOffset = 0x7fffffff;
+            }
+            if (currentDistance >= startOffset && currentDistance < endOffset) {
+                document.getElementById(chsId).style.display = 'block';
+                // document.getElementById('href-' + curId).style.textDecoration = "underline";
+            } else {
+                document.getElementById(chsId).style.display = 'none';
+                // document.getElementById('href-' + curId).style.textDecoration = "none";
+
+            }
+
+        }
+    }
+
+    function underLineTarget() {
+        var currentDistance = document.documentElement.scrollTop;
+        var targetList = [
+            "Part-A",
+            "Part-A1",
+            'Part-A2',
+            'Part-B',
+            'Part-B1',
+            'Part-B2',
+            'Part-C',
+            'Part-C1',
+            'Part-C2',
+            'Part-D',
+            'Part-D1',
+            'Part-D2',
+            'Part-D3'
+        ]
+        var i;
+        for (i = 0; i < targetList.length; i++) {
+            var curId = targetList[i];
+            var nexId = targetList[i + 1];
+            var startOffset = document.getElementById(curId).offsetTop;
+            var endOffset;
+            if (i + 1 < targetList.length) {
+                endOffset = document.getElementById(nexId).offsetTop;
+            } else {
+                endOffset = 0x7fffffff;
+            }
+            if (currentDistance >= startOffset && currentDistance < endOffset) {
+                if (document.getElementById('href-' + curId).className.indexOf(' active') == -1) {
+                    document.getElementById('href-' + curId).className += " active";
+                }
+
+            } else {
+                document.getElementById('href-' + curId).className = document.getElementById('href-' + curId).className.replace(' active', '');
+            }
+        }
+    }
+
+
+    window.onscroll = function() {
+        menuScroll();
+        chsScroll();
+        underLineTarget();
+
+    }
+
+
+    function rollTo(target) {
+        window.location.hash = target;
+        alert(target);
+    }
+
+    function displayChs(btnGroup) {
+        if (btnGroup.children[1].className.indexOf(' show') == -1) {
+            btnGroup.children[1].className += ' show';
+        };
+
+    }
+
+    function hiddenChs(btnGroup) {
+        if (btnGroup.children[1].className.indexOf(' show') > 0) {
+            btnGroup.children[1].className = btnGroup.children[1].className.replace(' show', '');
+        };
+    }
+</script>
+
+<body>
+    <div>
+
+        <!-- Header -->
+
+
+        <!-- Nav -->
+        <header>
+            <div class='header'>
+                <div class="container">
+                    <div class="logo">
+                        <a href="../index.html"><img alt="Logo" src="../images/logo.png"></a>
+                    </div>
+
+
+                    <nav id="main-menu" class="main-menu">
+                        <div class="btn-group" onmouseenter="displayChs(this)" onmouseleave="hiddenChs(this)">
+
+                            <a href="../index.html" class="btn btn-light btn-md dropdown-toggle minw " aria-haspopup="true" role="button">Home<span class="sr-only" data-toggle="dropdown"> Toggle Dropdown</span></a>
+
+
+                        </div>
+                        <div class="btn-group" onmouseenter="displayChs(this)" onmouseleave="hiddenChs(this)">
+
+                            <a href="../research/research.html" class="btn btn-light btn-md dropdown-toggle minw " aria-haspopup="true" role="button">Research<span class="sr-only" data-toggle="dropdown"> Toggle Dropdown</span></a>
+
+                        </div>
+                        <div class="btn-group" onmouseenter="displayChs(this)" onmouseleave="hiddenChs(this)">
+
+                            <a href="../team/team.html" class="btn btn-light btn-md dropdown-toggle minw " aria-haspopup="true" role="button">Team<span class="sr-only" data-toggle="dropdown"> Toggle Dropdown</span></a>
+
+
+
+                        </div>
+                        <div class="btn-group" onmouseenter="displayChs(this)" onmouseleave="hiddenChs(this)">
+
+                            <a href="../blank.html" class="btn btn-light btn-md dropdown-toggle minw " aria-haspopup="true" role="button"><span class="d-lg-none">Datasets</span><span class="d-none d-lg-block">Datasets</span><span class="sr-only" data-toggle="dropdown"> Toggle Dropdown</span></a>
+
+
+                        </div>
+                        <div class="btn-group" onmouseenter="displayChs(this)" onmouseleave="hiddenChs(this)">
+
+                            <a href="../blank.html" class="btn btn-light btn-md dropdown-toggle minw " aria-haspopup="true" role="button">Analysis<span class="sr-only" data-toggle="dropdown"> Toggle Dropdown</span></a>
+
+                            <div class="dropdown-menu">
+
+                                <div class="dropdown-submenu">
+                                    <a class="dropdown-item dropdown-toggle" href="#">Node analysis</a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="../blank.html">IP geolocation</a>
+                                        <a class="dropdown-item" href="../blank.html">IP2AS</a>
+                                        <a class="dropdown-item" href="../blank.html">Alias Resolution</a>
+                                    </div>
+                                </div>
+                                <a class="dropdown-item dropdown-toggle" href="../blank.html">Topology data analysis</a>
+                                <a class="dropdown-item dropdown-toggle" href="../blank.html">Routing data analysis</a>
+                                <a class="dropdown-item dropdown-toggle" href="../blank.html">Topology completeness improvements</a>
+                                <a class="dropdown-item dropdown-toggle" href="../blank.html">Routing inference improvements</a>
+                                <a class="dropdown-item dropdown-toggle" href="../blank.html">Routing security</a>
+                            </div>
+
+                        </div>
+
+                        <div class="btn-group" onmouseenter="displayChs(this)" onmouseleave="hiddenChs(this)">
+
+                            <a href="../blank.html" class="btn btn-light btn-md dropdown-toggle minw " aria-haspopup="true" role="button">Software/Tools<span class="sr-only" data-toggle="dropdown"> Toggle Dropdown</span></a>
+
+                        </div>
+
+
+                    </nav>
+
+
+                    <div>
+                        <img src="../images/tsinghua-right.png" style="width: 150px;">
+                    </div>
+
+
+                </div>
+            </div>
+
+        </header>
+
+        <!-- Main -->
+        <div class="container pt-2 pt-md-3 pb-3 pb-md-6">
+
+            <div class="row" id="xxa">
+
+                <div class="col-12 order-12 col-lg-9 col-xxl-10">
+
+                    <div class="content">
+
+                        <!-- Content -->
+                        <article class="box page-content">
+                           
+
+<h2>分布式训练-架构篇（基础）</h2>
+
+<h3>前言</h3>
+
+<p>近年来，深度学习被广泛应用于各种智能应用中来提供高质量的服务，如计算机视觉、自然语言处理、推荐系统等等。深度学习的成功得益于人们使用了更多的训练数据来训练更复杂的深度神经网络模型。大数据与大模型带来了海量的计算负载，而用于AI计算的GPU的计算能力增长速度明显跟不上计算需求的增长。2017年，Facebook 使用256块GPU将ResNet-50模型在ImageNet数据集上的训练时间从2周缩短为1个小时。这意味着，分布式系统可以大大减少训练时间，提高模型训练效率。这对于科研人员研究开发新模型和公司企业开发智能产品具有重大意义。</p>
+
+<p>这篇文章中，我们主要介绍深度学习的分布式训练架构。</p>
+
+<h3>数据并行</h3>
+
+<p>在介绍分布式训练架构之前，我们先简单介绍一下深度学习分布式训练的策略。</p>
+
+<p>深度学习模型最常采用的分布式训练策略是数据并行。这是因为训练耗时太长的原因之一训练数据量大，而且数据并行的工程实现较为简单。在数据并行中，每一个worker（GPU）都保存有一个完整的模型拷贝，训练数据被切分成若干份，并每个worker都分配到其中一份数据。深度学习模型训练由大量迭代计算完成。每个worker基于分配到的数据完成一次本地模型迭代计算后，就与其它worker交换模型参数（或者梯度），最后再完成本地模型更新。</p>
+
+<img src="../blog_fig/fig_DML_DataParallel.png">
+
+
+<p>另一种分布式训练策略是模型并行。模型并行策略主要是针对模型庞大无法加载到单个GPU上的情况。受限于工程实现复杂和效率较低的限制，除非模型本身很大，一般情况下人们不会采用模型并行。这篇文章介绍的分布式训练架构，也主要是面向数据并行策略，少量架构可以用于模型并行策略。</p>
+
+<h3>分布式训练架构</h3>
+
+<p>分布式训练主要包含两种基本架构，分别是参数服务器架构（PS架构）和Ring-AllReduce架构。近年来，也有少量的新型分布式训练架构被提出。</p>
+
+<h4>PS架构（Parameter Server架构)</h4>
+
+<p>在PS架构中，集群中的节点被分为两种：参数服务器和worker。参数服务器负责存放模型的参数，worker负责计算模型的梯度。参数服务器可以是一台机器，也可以是多个机器组成的集群。参数服务器角色采用集群的作用有2种：一是为了解决单个机器不够存储大规模模型参数的情况，二是为了冗余备份，防止单点故障造成系统停止或者崩溃。在每个迭代过程中，worker从参数服务器拉取模型参数，然后根据分配的训练数据计算模型的梯度，并将结果上传给参数服务器。参数服务器聚合worker传回的梯度，更新参数，并将新的参数广播给worker。</p>
+
+<img src="../blog_fig/fig_DML_PS.png">
+
+<h4>Ring-AllReduce架构</h4>
+
+<p>在 Ring-AllReduce架构中，每个计算节点都是worker角色，并形成一个环。这是一种扁平化的拓扑结构，没有中心节点来聚合所有worker计算的梯度。在一次迭代过程中，每个worker完成计算模型的梯度后，将梯度传递给环中的下一个worker，同时也接收上一个worker的梯度。在一个含有N个worker的环中，各个worker需要收到其它N-1个worker的梯度才能更新模型参数。具体的，N个worker之间交换模型参数的方式如下。</p>
+
+<ol>
+    <li>
+        <p>每个设备上的梯度被切分成长度大致相等的N个分片</p>
+        <img src="../blog_fig/fig_DML_ring_split.png">
+    </li>
+    <li><p>ScatterReduce阶段：总共有N-1轮通信。在每一轮通信中，worker将梯度分片传递给环中的下一个worker，同时也接收上一个worker的梯度分片。每个worker收到梯度分片后就直接将其<strong>合并（求和）</strong>到当前的分片结果中。</p>
+        <img src="../blog_fig/fig_DML_ring_scatter0.png">
+        <img src="../blog_fig/fig_DML_ring_scatter1.png">
+        <img src="../blog_fig/fig_DML_ring_scatter2.png">
+    </li>
+    <li>
+        <p>AllGather 阶段：总共有N-1轮通信。在每一轮通信中，worker将梯度分片传递给环中的下一个worker，同时也接收上一个worker的梯度分片。每个worker收到梯度分片后就直接将其<strong>覆盖</strong>当前的分片结果。</p>
+        <img src="../blog_fig/fig_DML_ring_allgather1.png.png"> 
+        <img src="../blog_fig/fig_DML_ring_allgather1.png">
+        <img src="../blog_fig/fig_DML_ring_allgather2.png">
+    </li>
+    <li>
+        <p>将分片求和的结果除以N，就可以得到平均梯度信息。</p>
+    </li>
+</ol>
+
+<h4>PS架构与Ring架构的通信时间开销分析</h4>
+
+<p>假设模型大小为 M bytes, 总共有 N 个worker节点，并且节点之间的带宽都为 B，PS架构中参数服务器的数量为 k 。那么时间开销对比如下</p>
+
+<p>
+<table>
+    <tr>
+        <td></td>
+        <td>PS</td>
+        <td>Ring-AllReduce</td>
+    </tr>
+    <tr>
+        <td>时间开销</td>
+        <td>max(M/B,nM/kB)</td>
+        <td>2(n-1)M/NB </td>
+    </tr>
+</table>
+</p>
+
+
+<p>可以看出，PS架构的通信时间开销基本上都要比Ring-AllReduce大，除非 k >= N，即参数服务器的数量与worker数量一样。</p>
+
+<h4>优缺点比较</h4>
+
+<ul><li>PS架构<ul><li>优点<ul><li>系统鲁棒性高：由于PS架构的参数存放在参数服务器，并且参数服务器具有冗余备份。PS架构具有较高的 fault-tolerance 能力，在节点故障时，能够保证分布式训练任务的进行。</li><li>支持异步训练：PS架构中worker训练好的模型都需要上传到参数服务器聚合，因此，参数服务器可以选择异步更新的策略来提高训练效率。</li><li>支持模型并行：对于大规模模型，单个节点已经无法容纳一个完整的模型。参数服务器可以将模型分割后存储在多个参数服务器中。</li></ul></li><li>缺点<ul><li>参数服务器存在带宽瓶颈：PS架构下，参数服务器端的流量与worker数量呈正比关系。在大规模集群中，参数服务器端的带宽不足，导致模型同步时间较长。</li></ul></li></ul></li><li>Ring-AllReduce<ul><li>优点<ul><li>通信效率高：Ring-AllReduce采用扁平化的通信拓扑结构，分散了worker之间的传输流量，避免汇聚到一个中心节点导致hot spot产生。</li></ul></li><li>缺点<ul><li>系统稳定差：在大规模集群中，出现单个节点发生故障的概率是较高的。在Ring-AllReduce下，一旦出现节点故障，整个系统都会停止，等待故障节点的恢复。</li><li>不支持异步更新：每个worker都需要等待其他worker完成后，才能完成本地模型的更新。</li><li>难以支持模型并行：Ring-AllReducex下一个worker容纳一个完整的模型。由于节点显存有限，当单个节点无法容纳一个大规模模型时，这种架构的使用就受到了限制。</li></ul></li></ul></li></ul>
+
+<h3><strong>参考</strong></h3>
+
+<ul><li>Scaling Distributed Machine Learning with the Parameter Serve,2014,OSDI </li><li><a href="https://github.com/baidu-research/baidu-allreduce">Baidu-Allreduce</a></li></ul>
+
+
+
+
+                        </article>
+                        <!-- Content end-->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="d-print-none">
+            <div class="sub-footer ">
+                <div class="container ">
+                    <div class="row ">
+                        <div class="col-2 " id="userpreferences ">
+
+                        </div>
+                        <div class="col-8 ">
+                            <div class="sub-footer-inner ">
+                                <ul>
+                                    <li>Copyright 漏2020-2025 Institute for Network Sciences and Cyberspace All Rights Reserved.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <script>
+                function isDoNotTrackEnabled() {
+                    if (typeof window === 'undefined') return false
+                    const {
+                        doNotTrack,
+                        navigator
+                    } = window
+                    const dnt = (doNotTrack || navigator.doNotTrack || navigator.msDoNotTrack || msTracking())
+                    if (!dnt) return false
+                    if (dnt === true || dnt === 1 || dnt === 'yes' || (typeof dnt === 'string' && dnt.charAt(0) === '1')) {
+                        return true
+                    }
+                    return false
+                }
+
+                function msTracking() {
+                    const {
+                        external
+                    } = window
+                    return 'msTrackingProtectionEnabled' in external &&
+                        typeof external.msTrackingProtectionEnabled === 'function' &&
+                        window.external.msTrackingProtectionEnabled()
+                }
+
+                if (!isDoNotTrackEnabled()) {
+                    window.dataLayer = window.dataLayer || [];
+
+                    function gtag() {
+                        dataLayer.push(arguments);
+                    }
+                    gtag('js', new Date());
+                    gtag('config', 'G-GJW4XFS0MC', {
+                        'anonymize_ip': false,
+                        cookie_flags: 'SameSite=None;Secure'
+                    });
+                }
+            </script>
+
+
+
+        </footer>
+
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/jquery.dropotron.min.js"></script>
+    <script src="../assets/js/jquery.scrolly.min.js"></script>
+    <script src="../assets/js/browser.min.js"></script>
+    <script src="../assets/js/breakpoints.min.js"></script>
+    <script src="../assets/js/util.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/frontpage.min.1189bd79a1f4db78276ee2cd45c1cd9b3a14ef14963341d3ec0f96ecddf56478.js "></script>
+    <script src="../assets/js/global.min.bca3c47a1bcb7341823d522f2aaac338660e989b4ffe85fb6f643dbb86731feb.js "></script>
+
+    
+
+</body>
+
+</html>
