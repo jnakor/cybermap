@@ -10965,6 +10965,7 @@ a.text-dark:focus {
 .col-xxl-4,
 .col-xxl-3,
 .col-xxl-2,
+.col-xxl-wider,
 .col-xxl-1,
 .col-xl,
 .col-xl-auto,
@@ -11806,6 +11807,10 @@ a.text-dark:focus {
         max-width: 8.33333333%
     }
     .col-xxl-2 {
+        flex: 0 0 18.66666667%;
+        max-width: 18.66666667%
+    }
+    .col-xxl-wider {
         flex: 0 0 22.66666667%;
         max-width: 22.66666667%
     }
@@ -11837,9 +11842,13 @@ a.text-dark:focus {
         flex: 0 0 75%;
         max-width: 75%
     }
-    .col-xxl-10 {
+    .col-xxl-narrow {
         flex: 0 0 77.33333333%;
         max-width: 77.33333333%
+    }
+    .col-xxl-10 {
+        flex: 0 0 81.33333333%;
+        max-width: 81.33333333%
     }
     .col-xxl-11 {
         flex: 0 0 91.66666667%;
