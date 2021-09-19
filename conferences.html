@@ -16,121 +16,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.min.c6820b4246dfb1fd50de50da104b15fa21b578b488678df9f6f9911de5b6bfac.css" />
     <link rel="stylesheet" href="assets/css/my.css" />
+    <link rel="stylesheet" href="assets/css/more.css" />
 
 </head>
 <script>
-    var fixmenuDistance;
-    window.onload = function() {
-        fixmenuDistance = document.getElementById('xxa').offsetTop + 20;
-    }
-
-    function menuScroll() {
-        var currentDistance = document.documentElement.scrollTop;
-        console.log(currentDistance, fixmenuDistance);
-        // alert(currentDistance + " " + fixmenuDistance);
-        if (currentDistance >= fixmenuDistance) {
-            document.getElementById("fixmenu").style.position = 'fixed';
-            document.getElementById("fixmenu").style.top = 0;
-        } else {
-            document.getElementById("fixmenu").style.position = 'relative';
-        }
-    }
-
-    function chsScroll() {
-        var currentDistance = document.documentElement.scrollTop;
-        // alert(currentDistance + " " + fixmenuDistance);
-        var idList = ["Part-A", "Part-B", "Part-C", "Part-D"];
-        var index;
-        for (index = 0; index < idList.length; index++) {
-            curId = idList[index];
-            nexId = idList[index + 1];
-            chsId = curId + "-chs";
-            if (document.getElementById(chsId) == undefined) continue;
-
-            var startOffset = document.getElementById(curId).offsetTop;
-            var endOffset;
-            if (index + 1 < idList.length) {
-                endOffset = document.getElementById(nexId).offsetTop;
-            } else {
-                endOffset = 0x7fffffff;
-            }
-            if (currentDistance >= startOffset && currentDistance < endOffset) {
-                document.getElementById(chsId).style.display = 'block';
-                // document.getElementById('href-' + curId).style.textDecoration = "underline";
-            } else {
-                document.getElementById(chsId).style.display = 'none';
-                // document.getElementById('href-' + curId).style.textDecoration = "none";
-
-            }
-
-        }
-    }
-
-    function underLineTarget() {
-        var currentDistance = document.documentElement.scrollTop;
-        var targetList = [
-            "Part-A",
-            "Part-A1",
-            'Part-A2',
-            'Part-B',
-            'Part-B1',
-            'Part-B2',
-            'Part-C',
-            'Part-C1',
-            'Part-C2',
-            'Part-D',
-            'Part-D1',
-            'Part-D2',
-            'Part-D3'
-        ]
-        var i;
-        for (i = 0; i < targetList.length; i++) {
-            var curId = targetList[i];
-            var nexId = targetList[i + 1];
-            var startOffset = document.getElementById(curId).offsetTop;
-            var endOffset;
-            if (i + 1 < targetList.length) {
-                endOffset = document.getElementById(nexId).offsetTop;
-            } else {
-                endOffset = 0x7fffffff;
-            }
-            if (currentDistance >= startOffset && currentDistance < endOffset) {
-                if (document.getElementById('href-' + curId).className.indexOf(' active') == -1) {
-                    document.getElementById('href-' + curId).className += " active";
-                }
-
-            } else {
-                document.getElementById('href-' + curId).className = document.getElementById('href-' + curId).className.replace(' active', '');
-            }
-        }
-    }
-
-
-    window.onscroll = function() {
-        menuScroll();
-        chsScroll();
-        underLineTarget();
-
-    }
-
-
-    function rollTo(target) {
-        window.location.hash = target;
-        alert(target);
-    }
-
-    function displayChs(btnGroup) {
-        if (btnGroup.children[1].className.indexOf(' show') == -1) {
-            btnGroup.children[1].className += ' show';
-        };
-
-    }
-
-    function hiddenChs(btnGroup) {
-        if (btnGroup.children[1].className.indexOf(' show') > 0) {
-            btnGroup.children[1].className = btnGroup.children[1].className.replace(' show', '');
-        };
-    }
 </script>
 
 <body>
@@ -217,57 +106,82 @@
         </header>
 
         <!-- Main -->
-        <div>
+        <div style="margin-top: 30px;">
+            <table id="more-tb">
+                <thead>
+                    <tr>
+                        <th>CCF</th>
+                        <th>abbreviation</th>
+                        <th>full name</th>
+                        <th>submission deadline</th>
+                        <th>notification date</th>
+                        <th>会议日期</th>
+                        <th>tag</th>
+                    </tr>
 
-            <div id="xxa">
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <span><h5>A</h5></span>
+                        </td>
+                        <td>
+                            <a href="https://www.usenix.org/conference/nsdi22">NSDI 2022</a>
+                        </td>
+                        <td>
+                            USENIX Symposium on Networked Systems Design and Implementation
+                        </td>
 
-                <div>
-
-                    <div class="content">
-
-                        <ul>
-                            <li>
-                                <a href="https://conferences.sigcomm.org/sigcomm/2021/">Sigcomm 2021</a>, August 23-27, 2021. <span class="text-info text-nowrap "></span>
-                            </li>
-                            <li>
-                                <a href="https://www.usenix.org/conference/nsdi22">NSDI 2022 </a>, deadline 2021.09.16. <span class="text-info text-nowrap ">[system]</span>
-
-                            </li>
-
-                            <li>
-                                <a href="https://mlsys.org/">MLSys 2022</a>, deadline 2021.10.08. <span class="text-info text-nowrap ">[ML system]</span>
-
-
-                            </li>
-
-
-                            <li>
-                                <a href="https://conferences.sigcomm.org/imc/2021/">IMC 2021</a>, December 2-4, 2021 <span class="text-info text-nowrap ">[Measurement]</span>
-
-                            </li>
-                            <li>
-                                <a href="https://conferences2.sigcomm.org/co-next/2021/">CoNEXT 2021</a>, December 7-10, 2021. <span class="text-info text-nowrap "></span>
-                            </li>
+                        <td>
+                            2021-09-09
+                        </td>
+                        <td>
+                            2021-12-15
+                        </td>
+                        <td>
+                            2022-04-04
+                        </td>
+                        <td>
+                            <ul>
+                                <li><a title="Measurement" class="result__link" href="/search?query=tag:measurement">[system]</a></li>
+                            </ul>
+                        </td>
 
 
+                    </tr>
+                    <tr>
+                        <td>
+                            <span><h5>A</h5></span>
+                        </td>
+                        <td>
+                            <a href="http://acm-ieee-sec.org/2021/">SEC 2021</a></td>
+                        </td>
+                        <td>
+                            ACM/IEEE Symposium on Edge Computing
+                        </td>
 
-                            <li>
-                                <a href="http://acm-ieee-sec.org/2021/">SEC 2021</a>, December 14-17, 2021 <span class="text-info text-nowrap ">[Edge, MLSys]</span>
+                        <td>
+                            2021-06-24
+                        </td>
+                        <td>
+                            2021-09-03
+                        </td>
+                        <td>
+                            2021-11-04
+                        </td>
+                        <td>
+                            <ul>
+                                <li><a title="Measurement" class="result__link" href="/search?query=tag:measurement">[Edge]</a></li>
+                                <li><a title="Measurement" class="result__link" href="/search?query=tag:measurement">[MLSys]</a></li>
+                            </ul>
+                        </td>
 
-                            </li>
-                            <li>
-                                <a href="https://www.usenix.org/conference/nsdi22">OSDI 2022 </a>, deadline 2021.12.24. <span class="text-info text-nowrap "></span>
 
-                            </li>
+                    </tr>
 
-                        </ul>
-
-                    </div>
-                </div>
-
-            </div>
+                </tbody>
+            </table>
         </div>
-
         <!-- Footer -->
         <footer class="d-print-none">
             <div class="sub-footer ">
