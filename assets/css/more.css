@@ -6,7 +6,9 @@
 
 #more-tb td {
     text-align: left;
-    border: solid;
+    border-top: solid;
+    border-bottom: solid;
+    border-width: 2px;
     border-color: darkgray;
 }
 
