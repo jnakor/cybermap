@@ -22,7 +22,26 @@
 
 </head>
 <script>
+    function xhttpGet(url) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", url, true);
+        xhttp.send();
+    }
+
+    function jsonpCallback(callback) {
+        var script = document.createElement("script");
+        script.setAttribute("type", "text/javascript");
+        script.src = "http://121.199.9.140:8080/total?callback=" + callback;
+        document.body.appendChild(script);
+    }
+
+    function showTotal(data) {
+        document.getElementById("totalAccess").innerHTML = data;
+    }
+
     window.onload = function() {
+        xhttpGet("http://121.199.9.140:8080/add")
+        jsonpCallback("showTotal")
         var roll_captions = ['Interdomain paths inference', 'Discovering Obscure Looking Glass', 'Identify critical nodes', 'Routing dependency analysis'];
         // slider
         var imgs_div = document.getElementById("imgs");
@@ -445,11 +464,13 @@
 
             <!-- Footer -->
             <footer class="d-print-none " style="margin-top: 35px;">
+
                 <div class="sub-footer ">
                     <div class="container ">
                         <div class="row ">
                             <div class="col-2 " id="userpreferences ">
-
+                                访客数
+                                <span id="totalAccess"></span>
                             </div>
                             <div class="col-8 ">
                                 <div class="sub-footer-inner ">
