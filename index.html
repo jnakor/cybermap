@@ -12,7 +12,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
-    <!-- <link rel="stylesheet" href="assets/css/font-awesome.min.css"> -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.min.c6820b4246dfb1fd50de50da104b15fa21b578b488678df9f6f9911de5b6bfac.css" />
     <link rel="stylesheet" href="assets/css/my.css" />
@@ -98,18 +97,8 @@
             animTimer = setInterval(function() {
                 imgsUl.style.left = imgsUl.offsetLeft + (offset - imgsUl.offsetLeft) / 10 + "px";
                 if (imgsUl.offsetLeft - offset < 10 && imgsUl.offsetLeft - offset > -10) {
-                    console.log(imgsUl.style.left);
-                    // var left_num = parseInt(imgsUl.style.left.replace("px", ""));
-                    // //如果偏移量已经等于指定好的偏移量，则秦楚定时器
-                    // for (var i = 0; i < 4; i++) {
-                    //     if ((-left_num) >= (i + 1) * 380 - 10 && (-left_num) <= (i + 1) * 380 + 10) {
-                    //         console.log(i + 1);
-                    //         document.getElementById("roll_caption").innerHTML = roll_captions[i];
-                    //     }
-                    // }
                     imgsUl.style.left = offset + "px";
                     clearInterval(animTimer);
-                    //开启定时轮播
                     play();
                 }
             }, 20);
@@ -156,85 +145,10 @@
 <body>
     <div>
 
-        <!-- Header -->
 
 
         <!-- Nav -->
-        <header>
-            <div class='header'>
-                <div class="container">
-                    <div class="logo">
-                        <a href="index.html"><img alt="Logo" src="images/logo.png"></a>
-                    </div>
-
-
-                    <nav id="main-menu" class="main-menu">
-                        <div class="btn-group" onmouseenter="displayChs(this)" onmouseleave="hiddenChs(this)">
-
-                            <a href="index.html" class="btn btn-light btn-md dropdown-toggle minw " aria-haspopup="true" role="button">Home<span class="sr-only" data-toggle="dropdown"> Toggle Dropdown</span></a>
-
-
-                        </div>
-                        <div class="btn-group" onmouseenter="displayChs(this)" onmouseleave="hiddenChs(this)">
-
-                            <a href="research/research.html" class="btn btn-light btn-md dropdown-toggle minw " aria-haspopup="true" role="button">Research<span class="sr-only" data-toggle="dropdown"> Toggle Dropdown</span></a>
-
-                        </div>
-                        <div class="btn-group" onmouseenter="displayChs(this)" onmouseleave="hiddenChs(this)">
-
-                            <a href="team/team.html" class="btn btn-light btn-md dropdown-toggle minw " aria-haspopup="true" role="button">Team<span class="sr-only" data-toggle="dropdown"> Toggle Dropdown</span></a>
-
-
-
-                        </div>
-                        <div class="btn-group" onmouseenter="displayChs(this)" onmouseleave="hiddenChs(this)">
-
-                            <a href="blank.html" class="btn btn-light btn-md dropdown-toggle minw " aria-haspopup="true" role="button"><span class="d-lg-none">Datasets</span><span class="d-none d-lg-block">Datasets</span><span class="sr-only" data-toggle="dropdown"> Toggle Dropdown</span></a>
-
-
-                        </div>
-                        <div class="btn-group" onmouseenter="displayChs(this)" onmouseleave="hiddenChs(this)">
-
-                            <a href="blank.html" class="btn btn-light btn-md dropdown-toggle minw " aria-haspopup="true" role="button">Analysis<span class="sr-only" data-toggle="dropdown"> Toggle Dropdown</span></a>
-
-                            <div class="dropdown-menu">
-
-                                <div class="dropdown-submenu">
-                                    <a class="dropdown-item dropdown-toggle" href="#">Node analysis</a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="blank.html">IP geolocation</a>
-                                        <a class="dropdown-item" href="blank.html">IP2AS</a>
-                                        <a class="dropdown-item" href="blank.html">Alias Resolution</a>
-                                    </div>
-                                </div>
-                                <a class="dropdown-item dropdown-toggle" href="blank.html">Topology data analysis</a>
-                                <a class="dropdown-item dropdown-toggle" href="blank.html">Routing data analysis</a>
-                                <a class="dropdown-item dropdown-toggle" href="blank.html">Topology completeness improvements</a>
-                                <a class="dropdown-item dropdown-toggle" href="blank.html">Routing inference improvements</a>
-                                <a class="dropdown-item dropdown-toggle" href="blank.html">Routing security</a>
-                            </div>
-
-                        </div>
-
-                        <div class="btn-group" onmouseenter="displayChs(this)" onmouseleave="hiddenChs(this)">
-
-                            <a href="blank.html" class="btn btn-light btn-md dropdown-toggle minw " aria-haspopup="true" role="button">Software/Tools<span class="sr-only" data-toggle="dropdown"> Toggle Dropdown</span></a>
-
-                        </div>
-
-
-                    </nav>
-
-
-                    <div>
-                        <img src="images/tsinghua-right.png" style="width: 150px;">
-                    </div>
-
-
-                </div>
-            </div>
-
-        </header>
+        <nav_header id="nav_header" :nav_items="nav_items"></nav_header>
 
         <div>
             <main class="col-12">
@@ -245,45 +159,18 @@
 
                                 <div class="col-lg-4 col-xl-4 text-left ">
                                     <h2><a href="/whatsnew ">News</a></h2>
+                                    <vue_news id="vue_news" :news_items="news_items"></vue_news>
 
-
-                                    <ul class="whatsnew ">
-                                        <li class="item mb-1 whatsnew ">
-                                            Juncai Liu post his first blog on this website. The blog is about distributed learning and it is in Chinese. We should write more!
-                                            <span class="time-info">Sep. 19, 2021</span>
-
-                                            <li class="item mb-1 whatsnew ">
-                                                Congrats to Juncai Liu! Our paper "FedPA: an Adaptively Partial Model Aggregation Strategy in Federated Learning" is accepted by Computer Networks.
-                                                <span class="time-info">Sep. 6, 2021</span>
-
-                                            </li>
-                                            <li class="item mb-1 whatsnew ">
-                                                The second page (our team) is available!
-                                                <span class="time-info">Aug. 28, 2021</span>
-                                            </li>
-                                            <li class="item mb-1 whatsnew ">
-                                                The first page (homepage) is available!
-                                                <span class="time-info">Aug. 28, 2021</span>
-                                            </li>
-                                            <li class="item mb-1 whatsnew ">
-                                                We launch our website program!
-                                                <span class="time-info">Aug. 25, 2021</span>
-                                            </li>
-                                    </ul>
                                     <a href="news.html" style="text-decoration: underline;">more</a>
                                 </div>
+
                                 <div class="col-lg-3 col-xl-4 text-left">
                                     <h2><a href="#">Upcoming Conferences</a></h2>
 
                                     <ul class="whatsnew ">
-                                        <!-- <li class="item mb-1 inthenews ">
-                                            <a href="https://conferences.sigcomm.org/sigcomm/2021/">Sigcomm 2021</a>, August 23-27, 2021. <span class="text-info text-nowrap "></span>
+                                        <li class="item mb-1 inthenews">
+                                            <a href="https://mlsys.org/">MLSys 2022</a>, <span class="time-info">deadline 2021.10.08</span> <span class="text-info text-nowrap ">[MLSys]</span>
                                         </li>
-                                        <li class="item mb-1 inthenews ">
-                                            <a href="https://www.usenix.org/conference/nsdi22">NSDI 2022 </a>, deadline 2021.09.16. <span class="text-info text-nowrap ">[System]</span>
-
-                                        </li> -->
-
                                         <li class="item mb-1 inthenews ">
                                             <a href="https://mlsys.org/">MLSys 2022</a>, <span class="time-info">deadline 2021.10.08</span> <span class="text-info text-nowrap ">[MLSys]</span>
 
@@ -374,29 +261,7 @@
 
                                 <div class="col-lg-4 col-xl-4 text-left " style="margin-top: 45px;">
                                     <h2><a href="./Readings.html">Readings</a></h2>
-
-
-                                    <ul class="whatsnew ">
-
-                                        <li class="item mb-1 inthenews ">
-                                            <span class="text-info text-nowrap">[Measurement]</span> On Mapping the Interconnections in Today’s Internet, TON 2019.
-                                            </span>
-                                        </li>
-
-                                        <li class="item mb-1 inthenews ">
-                                            <span class="text-info text-nowrap">[Measurement]</span> TopoScope: Recover AS Relationships From Fragmentary Observations, IMC 2020.</span>
-
-                                        </li>
-                                        <li class="item mb-1 inthenews ">
-                                            <span class="text-info text-nowrap">[MLSys]</span> Scalable Deep Learning on Distributed Infrastructures Challenges Techniques, and Tools, CSUR 2020.</span>
-                                        </li>
-                                        <li class="item mb-1 inthenews ">
-                                            <span class="text-info text-nowrap">[MLSys]</span> A Generic Communication Scheduler for Distributed DNN Training Acceleratio, SOSP 2019.</span>
-                                        </li>
-                                        <li class="item mb-1 inthenews ">
-                                            <span class="text-info text-nowrap">[Overlay, QoS]</span> Judicious QoS using cloud overlays, CoNEXT 2020.</span>
-                                        </li>
-                                    </ul>
+                                    <vue_readings id="vue_readings" :reading_items="reading_items"></vue_readings>
                                     <a href="./readings.html" style="text-decoration: underline;">more</a>
                                 </div>
                                 <div class="col-lg-3 col-xl-4 text-left blogfeed " style="margin-top: 45px;">
@@ -529,6 +394,7 @@
         </div>
 
         <!-- Scripts -->
+        <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
         <script src="assets/js/jquery.min.js "></script>
         <script src="assets/js/jquery.dropotron.min.js "></script>
         <script src="assets/js/jquery.scrolly.min.js "></script>
@@ -538,8 +404,9 @@
         <script src="assets/js/main.js "></script>
         <script src="assets/js/frontpage.min.1189bd79a1f4db78276ee2cd45c1cd9b3a14ef14963341d3ec0f96ecddf56478.js "></script>
         <script src="assets/js/global.min.bca3c47a1bcb7341823d522f2aaac338660e989b4ffe85fb6f643dbb86731feb.js "></script>
-
-
+        <script src="assets/js/nav_header.js"></script>
+        <script src="assets/js/news.js"></script>
+        <script src="assets/js/readings.js"></script>
 </body>
 
 </html>
