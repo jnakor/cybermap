@@ -1,4 +1,4 @@
-function displayChs(btnGroup) {
+function displaychildrens(btnGroup) {
     if (btnGroup.children.length > 1) {
         if (btnGroup.children[1].className.indexOf(' show') == -1) {
             btnGroup.children[1].className += ' show'
@@ -7,7 +7,7 @@ function displayChs(btnGroup) {
 
 }
 
-function hiddenChs(btnGroup) {
+function hiddenchildrens(btnGroup) {
     if (btnGroup.children.length > 1) {
         if (btnGroup.children[1].className.indexOf(' show') > 0) {
             btnGroup.children[1].className = btnGroup.children[1].className.replace(' show', '')
@@ -28,16 +28,16 @@ Vue.component("nav_header", {
 
 
                 <nav id="main-menu" class="main-menu">
-                    <div class="btn-group" onmouseenter="displayChs(this)" onmouseleave="hiddenChs(this)" style="margin: 2.5px;" v-for="nav_item in nav_items">
+                    <div class="btn-group" onmouseenter="displaychildrens(this)" onmouseleave="hiddenchildrens(this)" style="margin: 2.5px;" v-for="nav_item in nav_items">
 
                         <a :href="nav_item.href" class="btn btn-light btn-md dropdown-toggle minw  " aria-haspopup="true" role="button">{{nav_item.text}}<span class="sr-only" data-toggle="dropdown"> Toggle Dropdown</span></a>
 
-                        <div class="dropdown-menu" v-if="nav_item.child_exist">
-                            <div v-for="nav_ch in nav_item.chs">
-                                <div class="dropdown-submenu" v-if="nav_ch.ch_exist">
+                        <div class="dropdown-menu" v-if="nav_item.children_exist">
+                            <div v-for="nav_ch in nav_item.childrens">
+                                <div class="dropdown-submenu" v-if="nav_ch.children_exist">
                                     <a class="dropdown-item dropdown-toggle" href="blank.html">{{nav_ch.text}}</a>
                                     <div class="dropdown-menu ">
-                                        <a v-for="ch_ch in nav_ch.chs " class="dropdown-item" href="blank.html ">{{ch_ch.text}}</a>
+                                        <a v-for="ch_ch in nav_ch.childrens " class="dropdown-item" href="blank.html ">{{ch_ch.text}}</a>
                                     </div>
                                 </div>
 
@@ -64,30 +64,30 @@ new Vue({
         nav_items: [{
                 text: "Home",
                 href: "index.html",
-                child_exist: false
+                children_exist: false
             },
             {
                 text: "Research",
-                href: "research/research.html",
-                child_exist: false
+                href: "research.html",
+                children_exist: false
             },
             {
                 text: "Team",
-                href: "team/team.html",
-                child_exist: false
+                href: "team.html",
+                children_exist: false
             }, {
                 text: "Datasets",
                 href: "blank.html",
-                child_exist: false
+                children_exist: false
             },
             {
                 text: "Analysis",
                 href: "blank.html",
-                child_exist: true,
-                chs: [{
+                children_exist: true,
+                childrens: [{
                         text: "Node analysis",
-                        ch_exist: true,
-                        chs: [{
+                        children_exist: true,
+                        childrens: [{
                                 text: "IP geolocation"
                             },
                             {
@@ -100,30 +100,30 @@ new Vue({
                     },
                     {
                         text: "Topology data analysis",
-                        ch_exist: false
+                        children_exist: false
                     },
                     {
                         text: "Routing data analysis",
-                        ch_exist: false
+                        children_exist: false
                     },
                     {
                         text: "Topology completeness improvements",
-                        ch_exist: false
+                        children_exist: false
                     },
                     {
                         text: "Routing inference improvements",
-                        ch_exist: false
+                        children_exist: false
                     },
                     {
                         text: "Routing security",
-                        ch_exist: false
+                        children_exist: false
                     }
                 ]
             },
             {
                 text: "Software/Tools",
                 href: "blank.html",
-                child_exist: false
+                children_exist: false
             }
         ]
 

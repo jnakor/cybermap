@@ -8,15 +8,15 @@
 
 <head>
     <title>CyberMap</title>
-    <link rel="icon" href="../images/logo_r.png" sizes="32x32">
+    <link rel="icon" href="images/logo_r.png" sizes="32x32">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="../assets/css/main.css" />
-    <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/style.min.c6820b4246dfb1fd50de50da104b15fa21b578b488678df9f6f9911de5b6bfac.css" />
-    <link rel="stylesheet" href="../assets/css/my.css" />
-    <link rel="stylesheet" href="../assets/css/team.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.min.c6820b4246dfb1fd50de50da104b15fa21b578b488678df9f6f9911de5b6bfac.css" />
+    <link rel="stylesheet" href="assets/css/my.css" />
+    <link rel="stylesheet" href="assets/css/team.css" />
 
 
 </head>
@@ -34,14 +34,11 @@
         } else {
             document.getElementById("main-menu").style.display = 'block';
         }
-        // if (window.innerWidth <= 992) document.getElementById("fixmenu").style.width = '100%';
-        // else {
-        //     document.getElementById("fixmenu").style.width = '25%';
-        // }
+
 
     }
     window.onload = function() {
-        fixmenuDistance = document.getElementById('xxa').offsetTop + 20;
+        fixmenuDistance = document.getElementById('xxa').offsetTop + 22;
     }
 
     function menuScroll() {
@@ -97,109 +94,18 @@
         window.location.hash = target;
         alert(target);
     }
-
-    function displayChs(btnGroup) {
-        if (btnGroup.children[1].className.indexOf(' show') == -1) {
-            btnGroup.children[1].className += ' show';
-        };
-
-    }
-
-    function hiddenChs(btnGroup) {
-        if (btnGroup.children[1].className.indexOf(' show') > 0) {
-            btnGroup.children[1].className = btnGroup.children[1].className.replace(' show', '');
-        };
-    }
 </script>
 
 <body>
     <div>
-
-        <!-- Header -->
-
-
-        <header>
-            <div class='header'>
-                <div class="container">
-                    <div class="logo">
-                        <a href="../index.html"><img alt="Logo" src="../images/logo.png"></a>
-                    </div>
-
-
-                    <nav id="main-menu" class="main-menu">
-                        <div class="btn-group" onmouseenter="displayChs(this)" onmouseleave="hiddenChs(this)">
-
-                            <a href="../index.html" class="btn btn-light btn-md dropdown-toggle minw " aria-haspopup="true" role="button">Home<span class="sr-only" data-toggle="dropdown"> Toggle Dropdown</span></a>
-
-
-                        </div>
-                        <div class="btn-group" onmouseenter="displayChs(this)" onmouseleave="hiddenChs(this)">
-
-                            <a href="../research/research.html" class="btn btn-light btn-md dropdown-toggle minw " aria-haspopup="true" role="button">Research<span class="sr-only" data-toggle="dropdown"> Toggle Dropdown</span></a>
-
-                        </div>
-                        <div class="btn-group" onmouseenter="displayChs(this)" onmouseleave="hiddenChs(this)">
-
-                            <a href="../team/team.html" class="btn btn-light btn-md dropdown-toggle minw " aria-haspopup="true" role="button">Team<span class="sr-only" data-toggle="dropdown"> Toggle Dropdown</span></a>
-
-
-
-                        </div>
-                        <div class="btn-group" onmouseenter="displayChs(this)" onmouseleave="hiddenChs(this)">
-
-                            <a href="../blank.html" class="btn btn-light btn-md dropdown-toggle minw " aria-haspopup="true" role="button"><span class="d-lg-none">Datasets</span><span class="d-none d-lg-block">Datasets</span><span class="sr-only" data-toggle="dropdown"> Toggle Dropdown</span></a>
-
-
-                        </div>
-                        <div class="btn-group" onmouseenter="displayChs(this)" onmouseleave="hiddenChs(this)">
-
-                            <a href="../blank.html" class="btn btn-light btn-md dropdown-toggle minw " aria-haspopup="true" role="button">Analysis<span class="sr-only" data-toggle="dropdown"> Toggle Dropdown</span></a>
-
-                            <div class="dropdown-menu">
-
-                                <div class="dropdown-submenu">
-                                    <a class="dropdown-item dropdown-toggle" href="#">Node analysis</a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="../blank.html">IP geolocation</a>
-                                        <a class="dropdown-item" href="../blank.html">IP2AS</a>
-                                        <a class="dropdown-item" href="../blank.html">Alias Resolution</a>
-                                    </div>
-                                </div>
-                                <a class="dropdown-item dropdown-toggle" href="../blank.html">Topology data analysis</a>
-                                <a class="dropdown-item dropdown-toggle" href="../blank.html">Routing data analysis</a>
-                                <a class="dropdown-item dropdown-toggle" href="../blank.html">Topology completeness improvements</a>
-                                <a class="dropdown-item dropdown-toggle" href="../blank.html">Routing inference improvements</a>
-                                <a class="dropdown-item dropdown-toggle" href="../blank.html">Routing security</a>
-                            </div>
-
-                        </div>
-
-                        <div class="btn-group" onmouseenter="displayChs(this)" onmouseleave="hiddenChs(this)">
-
-                            <a href="../blank.html" class="btn btn-light btn-md dropdown-toggle minw " aria-haspopup="true" role="button">Software/Tools<span class="sr-only" data-toggle="dropdown"> Toggle Dropdown</span></a>
-
-                        </div>
-
-
-                    </nav>
-
-
-                    <div>
-                        <img src="../images/tsinghua-right.png" style="width: 150px;">
-                    </div>
-
-
-                </div>
-            </div>
-
-        </header>
-
+        <nav_header id="nav_header" :nav_items="nav_items"></nav_header>
 
 
         <!-- Main -->
         <div class="container pt-2 pt-md-3 pb-3 pb-md-6">
 
             <div class="row" id="xxa">
+
                 <aside class="col-12 order-1 col-lg-3 col-xxl-2 mb-3" id="asidebar">
                     <div id='menutop' class="sticky-top sidebar">
                         <div id="fixmenu" class="docs-menu">
@@ -224,6 +130,7 @@
                         </div>
                     </div>
                 </aside>
+
                 <div class="col-12 order-12 col-lg-9 col-xxl-10" style="padding-left: 40px;">
 
                     <div class="content">
@@ -235,7 +142,7 @@
                             <h2>Professor</h2>
                             <div class="manitem">
                                 <div style="float:left ">
-                                    <img src="../images/王会.png" style="width: 130px;" class="manpic">
+                                    <img src="images/王会.png" style="width: 130px;" class="manpic">
                                 </div>
                                 <div style="margin-left: 200px;">
                                     <section id="Part-A1">
@@ -257,7 +164,7 @@
                             <h2>PhD Student</h2>
                             <div class="manitem">
                                 <div style="float: left;">
-                                    <img src="../images/荣程浩.png" style="width: 130px;">
+                                    <img src="images/荣程浩.png" style="width: 130px;">
                                 </div>
                                 <div style="margin-left: 200px;">
                                     <section>
@@ -273,7 +180,7 @@
                             </div>
                             <div class="manitem">
                                 <div style="float: left;">
-                                    <img src="../images/庄姝颖.png" style="width: 130px;">
+                                    <img src="images/庄姝颖.png" style="width: 130px;">
                                 </div>
                                 <div style="margin-left: 200px;">
                                     <section id="Part-B2">
@@ -289,7 +196,7 @@
                             </div>
                             <div class="manitem">
                                 <div style="float: left; ">
-                                    <img src="../images/徐超.png " style="width: 130px; ">
+                                    <img src="images/徐超.png " style="width: 130px; ">
                                 </div>
                                 <div style="margin-left: 200px; ">
                                     <section id="Part-B3 ">
@@ -305,7 +212,7 @@
                             </div>
                             <div class="manitem">
                                 <div style="float:left; ">
-                                    <img src="../images/吴天昊.png " style="width: 130px; ">
+                                    <img src="images/吴天昊.png " style="width: 130px; ">
                                 </div>
                                 <div style="margin-left:200px; ">
                                     <section id="Part-B5">
@@ -321,7 +228,7 @@
                             </div>
                             <div class="manitem">
                                 <div style="float: left; ">
-                                    <img src="../images/刘俊材.png " style="width: 130px; ">
+                                    <img src="images/刘俊材.png " style="width: 130px; ">
                                 </div>
                                 <div style="margin-left: 200px; ">
                                     <section id="Part-B4 ">
@@ -343,7 +250,7 @@
                             <h2>Master Student</h2>
                             <div class="manitem">
                                 <div style="float: left; ">
-                                    <img src="../images/李锐.png " style="width: 130px; ">
+                                    <img src="images/李锐.png " style="width: 130px; ">
                                 </div>
                                 <div style="margin-left: 200px; ">
                                     <section id="Part-C1 ">
@@ -359,7 +266,7 @@
                             </div>
                             <div class="manitem ">
                                 <div style="float: left; ">
-                                    <img src="../images/江南.png " style="width: 130px; ">
+                                    <img src="images/江南.png " style="width: 130px; ">
                                 </div>
                                 <div style="margin-left: 200px; ">
                                     <section id="Part-C2 ">
@@ -450,16 +357,17 @@
     </div>
 
     <!-- Scripts -->
-    <script src="../assets/js/jquery.min.js "></script>
-    <script src="../assets/js/jquery.dropotron.min.js "></script>
-    <script src="../assets/js/jquery.scrolly.min.js "></script>
-    <script src="../assets/js/browser.min.js "></script>
-    <script src="../assets/js/breakpoints.min.js "></script>
-    <script src="../assets/js/util.js "></script>
-    <script src="../assets/js/main.js "></script>
-    <script src="../assets/js/frontpage.min.1189bd79a1f4db78276ee2cd45c1cd9b3a14ef14963341d3ec0f96ecddf56478.js "></script>
-    <script src="../assets/js/global.min.bca3c47a1bcb7341823d522f2aaac338660e989b4ffe85fb6f643dbb86731feb.js "></script>
-
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script src="assets/js/jquery.min.js "></script>
+    <script src="assets/js/jquery.dropotron.min.js "></script>
+    <script src="assets/js/jquery.scrolly.min.js "></script>
+    <script src="assets/js/browser.min.js "></script>
+    <script src="assets/js/breakpoints.min.js "></script>
+    <script src="assets/js/util.js "></script>
+    <script src="assets/js/main.js "></script>
+    <script src="assets/js/frontpage.min.1189bd79a1f4db78276ee2cd45c1cd9b3a14ef14963341d3ec0f96ecddf56478.js "></script>
+    <script src="assets/js/global.min.bca3c47a1bcb7341823d522f2aaac338660e989b4ffe85fb6f643dbb86731feb.js "></script>
+    <script src="assets/js/nav_header.js"></script>
 </body>
 
 </html>
