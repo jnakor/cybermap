@@ -30,81 +30,8 @@
 
 
         <!-- Nav -->
-        <header>
-            <div class='header'>
-                <div class="container">
-                    <div class="logo">
-                        <a href="index.html"><img alt="Logo" src="images/logo.png"></a>
-                    </div>
+        <nav_header id="nav_header" :nav_items="nav_items"></nav_header>
 
-
-                    <nav id="main-menu" class="main-menu">
-                        <div class="btn-group" onmouseenter="displayChs(this)" onmouseleave="hiddenChs(this)">
-
-                            <a href="index.html" class="btn btn-light btn-md dropdown-toggle minw " aria-haspopup="true" role="button">Home<span class="sr-only" data-toggle="dropdown"> Toggle Dropdown</span></a>
-
-
-                        </div>
-                        <div class="btn-group" onmouseenter="displayChs(this)" onmouseleave="hiddenChs(this)">
-
-                            <a href="research/research.html" class="btn btn-light btn-md dropdown-toggle minw " aria-haspopup="true" role="button">Research<span class="sr-only" data-toggle="dropdown"> Toggle Dropdown</span></a>
-
-                        </div>
-                        <div class="btn-group" onmouseenter="displayChs(this)" onmouseleave="hiddenChs(this)">
-
-                            <a href="team/team.html" class="btn btn-light btn-md dropdown-toggle minw " aria-haspopup="true" role="button">Team<span class="sr-only" data-toggle="dropdown"> Toggle Dropdown</span></a>
-
-
-
-                        </div>
-                        <div class="btn-group" onmouseenter="displayChs(this)" onmouseleave="hiddenChs(this)">
-
-                            <a href="blank.html" class="btn btn-light btn-md dropdown-toggle minw " aria-haspopup="true" role="button"><span class="d-lg-none">Datasets</span><span class="d-none d-lg-block">Datasets</span><span class="sr-only" data-toggle="dropdown"> Toggle Dropdown</span></a>
-
-
-                        </div>
-                        <div class="btn-group" onmouseenter="displayChs(this)" onmouseleave="hiddenChs(this)">
-
-                            <a href="blank.html" class="btn btn-light btn-md dropdown-toggle minw " aria-haspopup="true" role="button">Analysis<span class="sr-only" data-toggle="dropdown"> Toggle Dropdown</span></a>
-
-                            <div class="dropdown-menu">
-
-                                <div class="dropdown-submenu">
-                                    <a class="dropdown-item dropdown-toggle" href="#">Node analysis</a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="blank.html">IP geolocation</a>
-                                        <a class="dropdown-item" href="blank.html">IP2AS</a>
-                                        <a class="dropdown-item" href="blank.html">Alias Resolution</a>
-                                    </div>
-                                </div>
-                                <a class="dropdown-item dropdown-toggle" href="blank.html">Topology data analysis</a>
-                                <a class="dropdown-item dropdown-toggle" href="blank.html">Routing data analysis</a>
-                                <a class="dropdown-item dropdown-toggle" href="blank.html">Topology completeness improvements</a>
-                                <a class="dropdown-item dropdown-toggle" href="blank.html">Routing inference improvements</a>
-                                <a class="dropdown-item dropdown-toggle" href="blank.html">Routing security</a>
-                            </div>
-
-                        </div>
-
-                        <div class="btn-group" onmouseenter="displayChs(this)" onmouseleave="hiddenChs(this)">
-
-                            <a href="blank.html" class="btn btn-light btn-md dropdown-toggle minw " aria-haspopup="true" role="button">Software/Tools<span class="sr-only" data-toggle="dropdown"> Toggle Dropdown</span></a>
-
-                        </div>
-
-
-                    </nav>
-
-
-                    <div>
-                        <img src="images/tsinghua-right.png" style="width: 150px;">
-                    </div>
-
-
-                </div>
-            </div>
-
-        </header>
 
         <!-- Main -->
 
@@ -223,6 +150,7 @@
     </div>
 
     <!-- Scripts -->
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
     <script src="../assets/js/jquery.min.js "></script>
     <script src="../assets/js/jquery.dropotron.min.js "></script>
     <script src="../assets/js/jquery.scrolly.min.js "></script>
@@ -232,6 +160,7 @@
     <script src="../assets/js/main.js "></script>
     <script src="assets/js/frontpage.min.1189bd79a1f4db78276ee2cd45c1cd9b3a14ef14963341d3ec0f96ecddf56478.js "></script>
     <script src="assets/js/global.min.bca3c47a1bcb7341823d522f2aaac338660e989b4ffe85fb6f643dbb86731feb.js "></script>
+    <script src="assets/js/nav_header.js"></script>
 
 </body>
 
